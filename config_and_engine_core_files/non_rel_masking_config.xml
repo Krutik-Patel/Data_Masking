@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataMaskingConfig>
+    <!-- Pattern-based masking rules -->
+    <patterns>
+        <!-- Dates -->
+        <pattern>
+            <name>DATE_MDY</name>
+            <regex>(?:\d{1,2}[-/]\d{1,2}[-/]\d{2,4})</regex>
+            <maskingStrategy>DATE_SHIFT</maskingStrategy>
+            <preserveFormat>true</preserveFormat>
+        </pattern>
+        <pattern>
+            <name>DATE_ISO</name>
+            <regex>(?:\d{4}[-/]\d{1,2}[-/]\d{1,2})</regex>
+            <maskingStrategy>DATE_SHIFT</maskingStrategy>
+            <preserveFormat>true</preserveFormat>
+        </pattern>
+
+        <!-- Boolean -->
+        <pattern>
+            <name>BOOLEAN</name>
+            <regex>(?i)(true|false|yes|no|1|0)</regex>
+            <maskingStrategy>BOOLEAN_RANDOM</maskingStrategy>
+        </pattern>
+
+        <!-- Government IDs -->
+        <pattern>
+            <name>AADHAR</name>
+            <regex>\d{4}\s?\d{4}\s?\d{4}</regex>
+            <maskingStrategy>FIXED_LENGTH_MASK</maskingStrategy>
+            <preserveLastDigits>4</preserveLastDigits>
+        </pattern>
+        <pattern>
+            <name>SSN</name>
+            <regex>\d{3}[-\s]?\d{2}[-\s]?\d{4}</regex>
+            <maskingStrategy>FIXED_LENGTH_MASK</maskingStrategy>
+            <preserveLastDigits>4</preserveLastDigits>
+        </pattern>
+        <pattern>
+            <name>PASSPORT</name>
+            <regex>[A-Z]\d{7}|[A-Z]\d{8}</regex>
+            <maskingStrategy>ALPHANUMERIC_MASK</maskingStrategy>
+            <preserveFormat>true</preserveFormat>
+        </pattern>
+        <pattern>
+            <name>DRIVERS_LICENSE</name>
+            <regex>[A-Z]\d{6,14}</regex>
+            <maskingStrategy>ALPHANUMERIC_MASK</maskingStrategy>
+            <preserveFormat>true</preserveFormat>
+        </pattern>
+
+        <!-- Addresses -->
+        <pattern>
+            <name>ADDRESS</name>
+            <regex>\d+\s+[\w\s,]+\b(?:street|st|avenue|ave|road|rd|boulevard|blvd|lane|ln|drive|dr)\b</regex>
+            <maskingStrategy>RANDOM_ADDRESS</maskingStrategy>
+            <preserveFormat>true</preserveFormat>
+        </pattern>
+        <pattern>
+            <name>ZIPCODE</name>
+            <regex>\b\d{5}(?:-\d{4})?\b</regex>
+            <maskingStrategy>RANDOM_ZIPCODE</maskingStrategy>
+            <preserveFormat>true</preserveFormat>
+        </pattern>
+
+        <!-- Network Identifiers -->
+        <pattern>
+            <name>IP_ADDRESS</name>
+            <regex>(?:\d{1,3}\.){3}\d{1,3}</regex>
+            <maskingStrategy>IP_MASK</maskingStrategy>
+            <preserveSubnet>true</preserveSubnet>
+        </pattern>
+        <pattern>
+            <name>MAC_ADDRESS</name>
+            <regex>(?:[0-9A-Fa-f]{2}[:-]){5}(?:[0-9A-Fa-f]{2})</regex>
+            <maskingStrategy>MAC_MASK</maskingStrategy>
+        </pattern>
+        <pattern>
+            <name>UUID</name>
+            <regex>[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}</regex>
+            <maskingStrategy>RANDOM_UUID</maskingStrategy>
+        </pattern>
+
+        <!-- URLs -->
+        <!-- <pattern>
+            <name>URL</name>
+            <regex>https?://(?:[\w-]+\.)+[\w-]+(?:/[\w-./?%&=]*)?</regex>
+            <maskingStrategy>URL_MASK</maskingStrategy>
+            <preserveDomain>true</preserveDomain>
+        </pattern> -->
+
+        <!-- Personal Information -->
+        <pattern>
+            <name>NAME</name>
+            <regex>\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b</regex>
+            <maskingStrategy>RANDOM_NAME</maskingStrategy>
+            <preserveLength>true</preserveLength>
+        </pattern>
+        <pattern>
+            <name>GENDER</name>
+            <regex>(?i)\b(male|female|m|f|other)\b</regex>
+            <maskingStrategy>RANDOM_GENDER</maskingStrategy>
+        </pattern>
+
+        <!-- Passwords -->
+        <pattern>
+            <name>PASSWORD</name>
+            <regex>.{6,}</regex>
+            <maskingStrategy>HASH</maskingStrategy>
+            <salt>true</salt>
+        </pattern>
+
+        <!-- Integers -->
+        <pattern>
+            <name>INTEGER_DETERMINISTIC</name>
+            <regex>\b-?\d+\b</regex>
+            <maskingStrategy>INTEGER_HASH</maskingStrategy>
+            <preserveFormat>true</preserveFormat>
+        </pattern>
+
+    </patterns>
+
+</dataMaskingConfig>
