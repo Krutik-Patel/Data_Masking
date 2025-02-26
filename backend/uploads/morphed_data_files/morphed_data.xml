@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<company>
+  <departments>
+    <department>
+      <dept_id>101</dept_id>
+      <dept_name>Engineering</dept_name>
+      <employees>
+        <employee>
+          <emp_id>MORPHED</emp_id>
+          <name>MORPHED</name>
+          <ssn>MORPHED</ssn>
+          <salary>MORPHED</salary>
+          <email>MORPHED</email>
+          <projects>
+            <project>
+              <proj_id>MORPHED</proj_id>
+              <proj_name>Alpha AI</proj_name>
+              <assigned_date>MORPHED</assigned_date>
+            </project>
+          </projects>
+        </employee>
+        <employee>
+          <emp_id>MORPHED</emp_id>
+          <name>MORPHED</name>
+          <ssn>MORPHED</ssn>
+          <salary>MORPHED</salary>
+          <email>MORPHED</email>
+          <projects>
+            <project>
+              <proj_id>MORPHED</proj_id>
+              <proj_name>Beta Blockchain</proj_name>
+              <assigned_date>MORPHED</assigned_date>
+            </project>
+          </projects>
+        </employee>
+      </employees>
+    </department>
+    <department>
+      <dept_id>102</dept_id>
+      <dept_name>Marketing</dept_name>
+      <employees>
+        <employee>
+          <emp_id>MORPHED</emp_id>
+          <name>MORPHED</name>
+          <ssn>MORPHED</ssn>
+          <salary>MORPHED</salary>
+          <email>MORPHED</email>
+          <projects>
+            <project>
+              <proj_id>MORPHED</proj_id>
+              <proj_name>Gamma Growth</proj_name>
+              <assigned_date>MORPHED</assigned_date>
+            </project>
+          </projects>
+        </employee>
+      </employees>
+    </department>
+  </departments>
+  <confidential>
+    <internal_notes>MORPHED</internal_notes>
+  </confidential>
+</company>

@@ -1,9 +1,21 @@
 <fields_info>
     <field>
-        <field_name>id</field_name>
+        <field_name>emp_id</field_name>
         <dataType>integer</dataType>
         <isPrimaryKey>true</isPrimaryKey>
-        <refersTo></refersTo>
+        <morphing_methods>
+            <morphing_method>
+                <method_name>HASH</method_name>
+                <method_parameters>
+                    <parameter name="algorithm">SHA256</parameter>
+                </method_parameters>
+            </morphing_method>
+        </morphing_methods>
+    </field>
+    <field>
+        <field_name>ssn</field_name>
+        <dataType>string</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
         <morphing_methods>
             <morphing_method>
                 <method_name>HASH</method_name>
@@ -17,13 +29,12 @@
         <field_name>name</field_name>
         <dataType>string</dataType>
         <isPrimaryKey>false</isPrimaryKey>
-        <refersTo></refersTo>
         <morphing_methods>
             <morphing_method>
                 <method_name>MASK</method_name>
                 <method_parameters>
                     <parameter name="maskChar">X</parameter>
-                    <parameter name="preserveLastDigits">2</parameter>
+                    <parameter name="preserveLastDigits">3</parameter>
                 </method_parameters>
             </morphing_method>
         </morphing_methods>
@@ -32,21 +43,32 @@
         <field_name>email</field_name>
         <dataType>string</dataType>
         <isPrimaryKey>false</isPrimaryKey>
-        <refersTo></refersTo>
         <morphing_methods>
             <morphing_method>
                 <method_name>REPLACE</method_name>
                 <method_parameters>
-                    <parameter name="replacement">hidden@example.com</parameter>
+                    <parameter name="replacement">hidden@company.com</parameter>
                 </method_parameters>
             </morphing_method>
         </morphing_methods>
     </field>
     <field>
-        <field_name>order_id</field_name>
+        <field_name>salary</field_name>
+        <dataType>integer</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <morphing_methods>
+            <morphing_method>
+                <method_name>RANGE_SHIFT</method_name>
+                <method_parameters>
+                    <parameter name="shift">1000</parameter>
+                </method_parameters>
+            </morphing_method>
+        </morphing_methods>
+    </field>
+    <field>
+        <field_name>proj_id</field_name>
         <dataType>string</dataType>
         <isPrimaryKey>true</isPrimaryKey>
-        <refersTo></refersTo>
         <morphing_methods>
             <morphing_method>
                 <method_name>HASH</method_name>
@@ -57,30 +79,25 @@
         </morphing_methods>
     </field>
     <field>
-        <field_name>user_id</field_name>
-        <dataType>integer</dataType>
+        <field_name>assigned_date</field_name>
+        <dataType>date</dataType>
         <isPrimaryKey>false</isPrimaryKey>
-        <refersTo>id</refersTo>
         <morphing_methods>
             <morphing_method>
-                <method_name>MAP</method_name>
+                <method_name>HASH</method_name>
                 <method_parameters>
-                    <parameter name="strategy">consistent</parameter>
+                    <parameter name="algorithm">SHA256</parameter>
                 </method_parameters>
             </morphing_method>
         </morphing_methods>
     </field>
     <field>
-        <field_name>amount</field_name>
-        <dataType>float</dataType>
+        <field_name>internal_notes</field_name>
+        <dataType>string</dataType>
         <isPrimaryKey>false</isPrimaryKey>
-        <refersTo></refersTo>
         <morphing_methods>
             <morphing_method>
-                <method_name>NOISE</method_name>
-                <method_parameters>
-                    <parameter name="variance">5.0</parameter>
-                </method_parameters>
+                <method_name>REDACT</method_name>
             </morphing_method>
         </morphing_methods>
     </field>
