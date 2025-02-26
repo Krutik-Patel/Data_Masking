@@ -1,8 +1,8 @@
 import fs from 'fs';
 import xml2js from 'xml2js';
 
-// Extracts XPath-like paths from an XML structure
-function getXPaths(xml, parentPath = '') {
+// Extract XPaths from XML
+function getXPaths(xml) {
     let xpaths = [];
     let thePaths = new Map();
     let resultPaths = {};
@@ -18,8 +18,6 @@ function getXPaths(xml, parentPath = '') {
                     traverse(value, newPath);
                 }
 
-                // Initialize the set for the key if not already present
-                // Store unique paths using Set
                 if (!thePaths.has(key)) {
                     thePaths.set(key, new Set());
                 }
@@ -35,7 +33,6 @@ function getXPaths(xml, parentPath = '') {
             console.error("Error parsing XML:", err);
             return;
         }
-        // console.log(result);
         traverse(result, '');
         thePaths.forEach((value, key) => {
             resultPaths[key] = Array.from(value);
@@ -45,4 +42,17 @@ function getXPaths(xml, parentPath = '') {
     return resultPaths;
 }
 
-export default getXPaths;
+// Get config details from XML
+async function getConfigDetails(configFilePath) {
+    try {
+        const xmlConfigData = fs.readFileSync(configFilePath, 'utf-8');
+        const parser = new xml2js.Parser({ explicitArray: false });
+        const result = await parser.parseStringPromise(xmlConfigData);
+        return result?.fields_info?.field || [];
+    } catch (err) {
+        console.error("Error parsing the config XML:", err);
+        return null;
+    }
+}
+
+export { getXPaths, getConfigDetails };
