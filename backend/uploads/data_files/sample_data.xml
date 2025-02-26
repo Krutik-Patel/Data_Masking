@@ -1,0 +1,12 @@
+<root>
+    <user>
+        <id>12345</id>
+        <name>John Doe</name>
+        <email>john.doe@example.com</email>
+    </user>
+    <order>
+        <order_id>ORD56789</order_id>
+        <user_id>12345</user_id>
+        <amount>150.75</amount>
+    </order>
+</root>
