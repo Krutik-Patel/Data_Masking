@@ -2,7 +2,8 @@ const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
 const path = require("path");
-
+const { getXPaths, getConfigDetails } = require("./utils");
+const fs = require("fs");
 const app = express();
 app.use(cors());
 
@@ -25,12 +26,18 @@ const dataStorage = multer.diskStorage({
 const uploadData = multer({ storage: dataStorage });
 
 // Handle config file upload
-app.post("/upload/config", uploadConfig.single("file"), (req, res) => {
+app.post("/uploads/config", uploadConfig.single("file"), (req, res) => {
+    console.log("Received a request for /uploads/config");
     res.json({ message: "Config file uploaded successfully", filename: req.file.filename });
+    const filePath = path.join(__dirname, "uploads/config_files", req.file.filename);
+    const xmlData = fstat.readFileSync(filePath, 'utf8');
+    const xPaths = getXPaths(xmlData);
+    res.json({ message: "XPaths: ", xPaths });
+    console.log("XPaths: ", xPaths);
 });
 
 // Handle data file upload
-app.post("/upload/data", uploadData.single("file"), (req, res) => {
+app.post("/uploads/data", uploadData.single("file"), (req, res) => {
     res.json({ message: "Data file uploaded successfully", filename: req.file.filename });
 });
 

@@ -1,1 +1,6 @@
 backend/node_modules/
+frontend/node_modules/
+config_and_engine_core_files/config_files/
+config_and_engine_core_files/data_files/
+config_and_engine_core_files/morphed_data_files/
+backend/uploads/

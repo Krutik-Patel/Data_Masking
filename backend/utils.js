@@ -1,5 +1,5 @@
-import fs from 'fs';
-import xml2js from 'xml2js';
+const fs = require('fs');
+const xml2js = require('xml2js');
 
 // Extract XPaths from XML
 function getXPaths(xml) {
@@ -55,4 +55,7 @@ async function getConfigDetails(configFilePath) {
     }
 }
 
-export { getXPaths, getConfigDetails };
+module.exports = {
+    getXPaths: getXPaths, 
+    getConfigDetails: getConfigDetails,
+  };
