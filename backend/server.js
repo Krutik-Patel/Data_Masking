@@ -5,6 +5,7 @@ const path = require("path");
 const { getXPaths, getConfigDetails } = require("./utils");
 const fs = require("fs");
 const app = express();
+const { main } = require('./mainOne');
 app.use(cors());
 
 // Configure multer for config files
@@ -26,19 +27,30 @@ const dataStorage = multer.diskStorage({
 const uploadData = multer({ storage: dataStorage });
 
 // Handle config file upload
-app.post("/uploads/config", uploadConfig.single("file"), (req, res) => {
+app.post("/uploads/config", uploadConfig.single("file"), async (req, res) => {
     console.log("Received a request for /uploads/config");
-    res.json({ message: "Config file uploaded successfully", filename: req.file.filename });
     const filePath = path.join(__dirname, "uploads/config_files", req.file.filename);
-    const xmlData = fstat.readFileSync(filePath, 'utf8');
-    const xPaths = getXPaths(xmlData);
-    res.json({ message: "XPaths: ", xPaths });
-    console.log("XPaths: ", xPaths);
+    // const xmlData = fs.readFileSync(filePath, 'utf8');
+    const rules = await getConfigDetails(filePath);
+    res.json({ 
+        message: "Config file uploaded successfully", 
+        filename: req.file.filename,
+        configRules: rules
+    });
 });
 
 // Handle data file upload
 app.post("/uploads/data", uploadData.single("file"), (req, res) => {
+    console.log("Received a request for /uploads/data");
     res.json({ message: "Data file uploaded successfully", filename: req.file.filename });
+});
+
+app.get("/maskData", async (req, res) => {
+    console.log("Received a request for /maskData");
+    main();
+    const dataFilePath = './uploads/morphed_data_files/morphed_data.xml';
+    const xmldata = fs.readFileSync(dataFilePath, 'utf-8');
+    res.json({ message: "Data masked successfully", maskedData: xmldata });
 });
 
 // Serve uploaded files statically

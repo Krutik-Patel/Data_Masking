@@ -1,7 +1,7 @@
-import fs from 'fs';
-import xml2js from 'xml2js';
-import { getXPaths, getConfigDetails } from './utils.js';
-import morphData from './morph.js';
+const fs = require('fs');
+const xml2js = require('xml2js');
+const { getXPaths, getConfigDetails } = require('./utils.js');
+const { morphData } = require('./morph');
 
 async function main() {
     const configFilePath = './uploads/config_files/sample_config.xml';
@@ -22,9 +22,12 @@ async function main() {
     const parser = new xml2js.Parser({ explicitArray: false });
     let jsonData = await parser.parseStringPromise(xmldata);
     console.log("JSON representation of data file:", jsonData);
-
+    
     // Morph the data
     morphData(jsonData, configDetails, xPaths);
 }
 
-main();
+// main();
+module.exports = {
+    main: main
+}

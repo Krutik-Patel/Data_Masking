@@ -1,7 +1,7 @@
 // xpaths have the xpaths for all the field_names
 // configDetails have all the field_names which are to be morphed
-import fs from 'fs';
-import xml2js from 'xml2js';
+const fs = require('fs');
+const xml2js = require('xml2js');
 
 // Function to apply a basic morphing method
 function applyMorphing(originalValue) {
@@ -68,8 +68,9 @@ function morphData(jsonData, configDetails, xpaths) {
     console.log("Morphing complete. Output saved to morphed_data.xml");
 }
 
-export default morphData;
-
+module.exports = {
+    morphData: morphData
+};
 
 
 

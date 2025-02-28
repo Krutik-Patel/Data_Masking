@@ -58,4 +58,4 @@ async function getConfigDetails(configFilePath) {
 module.exports = {
     getXPaths: getXPaths, 
     getConfigDetails: getConfigDetails,
-  };
+};

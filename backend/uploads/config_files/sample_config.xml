@@ -1,6 +1,7 @@
 <fields_info>
     <field>
         <field_name>emp_id</field_name>
+        <field_xPath>/employee/id</field_xPath>
         <dataType>integer</dataType>
         <isPrimaryKey>true</isPrimaryKey>
         <morphing_methods>
@@ -14,6 +15,7 @@
     </field>
     <field>
         <field_name>ssn</field_name>
+        <field_xPath>/employee/ssn</field_xPath>
         <dataType>string</dataType>
         <isPrimaryKey>false</isPrimaryKey>
         <morphing_methods>
@@ -27,6 +29,7 @@
     </field>
     <field>
         <field_name>name</field_name>
+        <field_xPath>/employee/name</field_xPath>
         <dataType>string</dataType>
         <isPrimaryKey>false</isPrimaryKey>
         <morphing_methods>
@@ -41,6 +44,7 @@
     </field>
     <field>
         <field_name>email</field_name>
+        <field_xPath>/employee/contact/email</field_xPath>
         <dataType>string</dataType>
         <isPrimaryKey>false</isPrimaryKey>
         <morphing_methods>
@@ -54,6 +58,7 @@
     </field>
     <field>
         <field_name>salary</field_name>
+        <field_xPath>/employee/compensation/salary</field_xPath>
         <dataType>integer</dataType>
         <isPrimaryKey>false</isPrimaryKey>
         <morphing_methods>
@@ -67,6 +72,7 @@
     </field>
     <field>
         <field_name>proj_id</field_name>
+        <field_xPath>/project/id</field_xPath>
         <dataType>string</dataType>
         <isPrimaryKey>true</isPrimaryKey>
         <morphing_methods>
@@ -80,6 +86,7 @@
     </field>
     <field>
         <field_name>assigned_date</field_name>
+        <field_xPath>/project/assignment/date</field_xPath>
         <dataType>date</dataType>
         <isPrimaryKey>false</isPrimaryKey>
         <morphing_methods>
@@ -93,6 +100,7 @@
     </field>
     <field>
         <field_name>internal_notes</field_name>
+        <field_xPath>/employee/internal/notes</field_xPath>
         <dataType>string</dataType>
         <isPrimaryKey>false</isPrimaryKey>
         <morphing_methods>
