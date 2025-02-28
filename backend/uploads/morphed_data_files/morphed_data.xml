@@ -6,30 +6,30 @@
       <dept_name>Engineering</dept_name>
       <employees>
         <employee>
-          <emp_id>MORPHED</emp_id>
-          <name>MORPHED</name>
-          <ssn>MORPHED</ssn>
-          <salary>MORPHED</salary>
-          <email>MORPHED</email>
+          <emp_id>fe675fe7aaee830b6fed09b64e034f84dcbdaeb429d9cccd4ebb90e15af8dd71</emp_id>
+          <name>XXXXXXXXXXson</name>
+          <ssn>01a54629efb952287e554eb23ef69c52097a75aecc0e3a93ca0855ab6d7a31a0</ssn>
+          <salary>86000</salary>
+          <email>hidden@company.com</email>
           <projects>
             <project>
-              <proj_id>MORPHED</proj_id>
+              <proj_id>4cf2be1b665a7168c12daa567bf4e9b0</proj_id>
               <proj_name>Alpha AI</proj_name>
-              <assigned_date>MORPHED</assigned_date>
+              <assigned_date>85e8ea577b580b35c9497704500443a867e8ad095977eda2d3a22a5f24a2d6b0</assigned_date>
             </project>
           </projects>
         </employee>
         <employee>
-          <emp_id>MORPHED</emp_id>
-          <name>MORPHED</name>
-          <ssn>MORPHED</ssn>
-          <salary>MORPHED</salary>
-          <email>MORPHED</email>
+          <emp_id>b281bc2c616cb3c3a097215fdc9397ae87e6e06b156cc34e656be7a1a9ce8839</emp_id>
+          <name>XXXXXXith</name>
+          <ssn>ecdbc061a36dd6495e016ba4696dedbc4c0b822b4d6ec55b4fb57d17f1df5695</ssn>
+          <salary>93000</salary>
+          <email>hidden@company.com</email>
           <projects>
             <project>
-              <proj_id>MORPHED</proj_id>
+              <proj_id>bbd721807c119c5004527c3c317fc3b4</proj_id>
               <proj_name>Beta Blockchain</proj_name>
-              <assigned_date>MORPHED</assigned_date>
+              <assigned_date>7ed331e6daac3172e0a0ed9d7d0e176cbcb9dd8b66fa8c7843e2b7faad526c69</assigned_date>
             </project>
           </projects>
         </employee>
@@ -40,16 +40,16 @@
       <dept_name>Marketing</dept_name>
       <employees>
         <employee>
-          <emp_id>MORPHED</emp_id>
-          <name>MORPHED</name>
-          <ssn>MORPHED</ssn>
-          <salary>MORPHED</salary>
-          <email>MORPHED</email>
+          <emp_id>85d6385b945c0d602103db39b0b654b2af93b5127938e26a959c123f0789b948</emp_id>
+          <name>XXXXXXXXXXvis</name>
+          <ssn>2e54cc08456e5401868e64bf1ca1f597e0af65d4e111c94b514344796363fe8f</ssn>
+          <salary>79000</salary>
+          <email>hidden@company.com</email>
           <projects>
             <project>
-              <proj_id>MORPHED</proj_id>
+              <proj_id>d4da0a691ce727fd2dff5313aad42beb</proj_id>
               <proj_name>Gamma Growth</proj_name>
-              <assigned_date>MORPHED</assigned_date>
+              <assigned_date>5162d41d7add8c6f1026b54d8e7dc00aed955c7a724cc9c8a9da49925d04b541</assigned_date>
             </project>
           </projects>
         </employee>
@@ -57,6 +57,6 @@
     </department>
   </departments>
   <confidential>
-    <internal_notes>MORPHED</internal_notes>
+    <internal_notes>REDACTED</internal_notes>
   </confidential>
 </company>
