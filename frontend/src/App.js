@@ -19,7 +19,7 @@ function Upload() {
         formData.append("file", file);
 
         try {
-            const response = await axios.post(`http://localhost:5000/uploads/${upload_path}`, formData, {
+            const response = await axios.post(`http://localhost:8080/uploads/${upload_path}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" }
             });
 
@@ -30,19 +30,22 @@ function Upload() {
                 console.log(response.data.configRules);
             } else if (upload_path === 'data') {
                 setDataMessage(response.data.message);
+                console.log("thisa");
             }
         } catch (error) {
             if (upload_path === 'config') {
                 setConfigMessage("Upload failed");
+                console.log("thisb");
             } else if (upload_path === 'data') {
                 setDataMessage("Upload failed");
+                console.log("thisc");
             }
         }
     };
     
     const maskData = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/maskData");
+            const response = await axios.get("http://localhost:8080/maskData");
             setMaskedData(response.data.maskedData);
             console.log(response.data.maskedData);
         } catch (error) {

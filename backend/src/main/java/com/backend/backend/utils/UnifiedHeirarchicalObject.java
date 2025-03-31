@@ -1,0 +1,29 @@
+package com.backend.backend.utils;
+
+import java.util.List;
+
+public class UnifiedHeirarchicalObject {
+    private final String key;
+    private String value;
+    private List<UnifiedHeirarchicalObject> children;
+
+    public UnifiedHeirarchicalObject(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public String getKey() { return this.key; }
+    public String getValue() { return this.value; }
+    public void setValue(String value) { this.value = value; } 
+    public boolean hasChildren() { return children.size() > 0; }
+    public List<UnifiedHeirarchicalObject> getChildren() { return this.children; }
+    public void addChild(UnifiedHeirarchicalObject child) { this.children.add(child); }
+}
+
+
+/* assumptions:: 
+ 
+    1. the structure of this tree would not change after data masking
+    2. key of a node can't be changed.
+
+*/
