@@ -12,6 +12,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class XMLLoader implements DataLoaderStrategy {
+    @Override
     public UnifiedHeirarchicalObject parseFile(MultipartFile file) throws Exception {
         InputStream is = file.getInputStream();
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

@@ -1,9 +1,37 @@
 package com.backend.backend.utils;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.multipart.MultipartFile;
 
 public class JSONLoader implements DataLoaderStrategy {
-    public UnifiedHeirarchicalObject parseFile(MultipartFile file) {
-        return null;
+    @Override
+    public UnifiedHeirarchicalObject parseFile(MultipartFile file) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode rootNode = mapper.readTree(file.getInputStream());
+        UnifiedHeirarchicalObject object = convertNode(rootNode, "root");
+        return object;
+    }
+
+    private UnifiedHeirarchicalObject convertNode(JsonNode jsonNode, String key) {
+        UnifiedHeirarchicalObject node;
+        if (jsonNode.isContainerNode()) {
+            node = new UnifiedHeirarchicalObject(key, null);
+            if (jsonNode.isObject()) {
+                jsonNode.fieldNames().forEachRemaining(field -> {
+                    JsonNode child = jsonNode.get(field);
+                    node.addChild(convertNode(child, field));
+                });
+            } else if (jsonNode.isArray()) {
+                for (JsonNode child : jsonNode) {
+                    node.addChild(convertNode(child, key));
+                } 
+            }
+        } else {
+            String textValue = jsonNode.asText();
+            node = new UnifiedHeirarchicalObject(key, textValue.isEmpty() ? null : textValue);
+        }
+
+        return node;
     }
 }
