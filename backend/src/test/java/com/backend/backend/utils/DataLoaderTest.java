@@ -28,7 +28,20 @@ public class DataLoaderTest {
 
     @Test
     public void testloadJSON() throws Exception {
-        String jsonContent = "";
-        assertTrue(true);
+        String jsonContent = "{\"child\": \"value\", \"child1\": { \"innerchild\": \"value1\" } }";
+        
+        MockMultipartFile file = new MockMultipartFile("file", "test.json", "text/json", jsonContent.getBytes());
+
+        DataLoader loader = new DataLoader();
+        UnifiedHeirarchicalObject result = loader.loadContent(file);
+
+        assertNotNull(result);
+        assertEquals("root", result.getKey());
+        assertNull(result.getValue());
+        assertTrue(result.hasChildren());
+
+        List<UnifiedHeirarchicalObject> children = result.getChildren();
+        assertEquals("child", children.get(0).getKey());
+        assertEquals("value1", children.get(1).getChildren().get(0).getValue());
     }
 }
