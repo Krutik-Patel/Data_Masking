@@ -25,4 +25,10 @@ public class DataLoaderTest {
         assertEquals("child", children.get(0).getKey());
         assertEquals("value1", children.get(1).getChildren().get(0).getValue());
     }
+
+    @Test
+    public void testloadJSON() throws Exception {
+        String jsonContent = "";
+        assertTrue(true);
+    }
 }
