@@ -11,6 +11,7 @@ public class JSONWriter implements DataWriterStrategy {
     }
     
     private String readTree(UnifiedHeirarchicalObject object, int level) {
+        throw new UnsupportedOperationException("Unimplemented class JSON Writer... Use XMLWriter instead!");
         // if (!object.hasChildren()) {
         //     return "\t".repeat(level) + object.getKey() + ": " + object.getValue() + ",\n";
         // } else {
@@ -21,7 +22,7 @@ public class JSONWriter implements DataWriterStrategy {
         //     // }
         //     return tree;
         // }
-        return "INCOMPLETE IMPLEMENTATION OF JSON WRITER: PLEASE USE XMLWRITER INSTEAD";
+        // return "INCOMPLETE IMPLEMENTATION OF JSON WRITER: PLEASE USE XMLWRITER INSTEAD";
 
     }
 }
