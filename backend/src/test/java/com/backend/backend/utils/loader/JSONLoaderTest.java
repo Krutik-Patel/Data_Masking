@@ -1,4 +1,4 @@
-package com.backend.backend.utils;
+package com.backend.backend.utils.loader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -11,6 +11,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.mock.web.MockMultipartFile;
+
+import com.backend.backend.utils.UnifiedHeirarchicalObject;
+import com.backend.backend.utils.loader.JSONLoader;
 
 public class JSONLoaderTest {
     @Test

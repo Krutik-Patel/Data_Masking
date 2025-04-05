@@ -1,4 +1,4 @@
-package com.backend.backend.utils;
+package com.backend.backend.utils.loader;
 
 import java.io.InputStream;
 
@@ -10,6 +10,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class XMLLoader implements DataLoaderStrategy {
     @Override

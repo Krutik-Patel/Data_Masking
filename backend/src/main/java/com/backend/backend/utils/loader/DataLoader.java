@@ -1,9 +1,11 @@
-package com.backend.backend.utils;
+package com.backend.backend.utils.loader;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class DataLoader {
     private Map<String, DataLoaderStrategy> loaderMap = new HashMap<>();
