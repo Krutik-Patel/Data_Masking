@@ -13,14 +13,16 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class ConfigLoader {
     Map<String, MaskingStrategy> maskStrategyMap;
+    private UnifiedHeirarchicalObject configTree;
     public ConfigLoader() {
         this.maskStrategyMap = new HashMap<>();
     }
 
     public void parse(MultipartFile config) throws Exception {
         UnifiedHeirarchicalObject configTree = new DataLoader().loadContent(config);
+        this.configTree = configTree;
         // first level is fields_info, children are the different fields
-        List<UnifiedHeirarchicalObject> fields = configTree.getChildren();
+        List<UnifiedHeirarchicalObject> fields = this.configTree.getChildren();
         fields.forEach((field) -> {
             mapConfigToMask(field);
         });
