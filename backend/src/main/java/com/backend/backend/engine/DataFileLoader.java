@@ -33,6 +33,10 @@ public class DataFileLoader {
         }
     }
 
+    public String stringifyData() {
+        throw new UnsupportedOperationException("Operation yet to be implemented");
+    }
+
     public List<UnifiedHeirarchicalObject> getNodesByXPath(String xpath) {
         return this.xPathToData.get(xpath);
     }
