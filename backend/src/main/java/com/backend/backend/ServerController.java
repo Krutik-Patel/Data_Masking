@@ -11,8 +11,6 @@ import com.backend.backend.engine.Engine;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ServerController {
-    private MultipartFile dataFile;
-    private MultipartFile configFile;
     private Engine engineInstance;
     public ServerController() {
         this.engineInstance = Engine.getInstance();
@@ -25,25 +23,25 @@ public class ServerController {
 
     @PostMapping("/uploads/data")
     public Response uploadData(MultipartFile data) {
-        this.dataFile = data;
-        String output = "Data Uploaded Successfully";
-        Response response = new Response(output);
+        String dataFileText = this.engineInstance.putDataFile(data);
+        String successMessage = "Data Uploaded Successfully";
+        Response response = new Response(successMessage, dataFileText);
         return response;
     }
 
     @PostMapping("/uploads/config")
     public Response uploadConfig(MultipartFile data) {
-        this.configFile = data;
-        String output = "Config File uploaded Successfully";
-        Response response = new Response(output);
+        String configFileText = this.engineInstance.putConfig(data);
+        String successMessage = "Config File uploaded Successfully";
+        Response response = new Response(successMessage, configFileText);
         return response;
     }
 
     @GetMapping("/maskData")
     public Response sendMaskedData() {
         String output;
-        if (this.dataFile != null && this.configFile != null) {
-            output = this.engineInstance.maskData(configFile, dataFile);
+        if (this.engineInstance.isReadyForMasking()) {
+            output = this.engineInstance.maskData();
         } else {
             output = "Upload both data and config file first!!";
         }
@@ -53,23 +51,20 @@ public class ServerController {
 }
 
 class Response {
-    private String message, configRules;
+    private String message, additionalText;
     
     public Response(String message) {
         this.message = message;
     }
 
-    public Response(String message, String configRules) { 
+    public Response(String message, String additionalText) { 
         this.message = message;
-        this.configRules = configRules;
+        this.additionalText = additionalText;
     }
 
-    public String getMessage() { return this.message; }
-    
-    public String getConfigRules() { return this.configRules; }
-
+    public String getMessage() { return this.message; }    
+    public String getadditionalText() { return this.additionalText; }
     public void setMessage(String message) { this.message = message; }
-
-    public void setConfigRules(String configRules) { this.configRules = configRules; }
+    public void setadditionalText(String additionalText) { this.additionalText = additionalText; }
 }
 

@@ -9,10 +9,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.backend.backend.utils.UnifiedHeirarchicalObject;
 import com.backend.backend.utils.loader.DataLoader;
+import com.backend.backend.utils.writer.DataWriter;
+import com.backend.backend.utils.writer.DataWriter.DataFormat;
 
 public class DataFileLoader {
     private UnifiedHeirarchicalObject dataFile;
     private Map<String, List<UnifiedHeirarchicalObject>> xPathToData;
+
     public DataFileLoader() {
         this.xPathToData = new HashMap<>();
     }
@@ -33,8 +36,9 @@ public class DataFileLoader {
         }
     }
 
-    public String stringifyData() {
-        throw new UnsupportedOperationException("Operation yet to be implemented");
+    public String stringifyData() throws Exception {
+        String dataString = new DataWriter().writeToString(dataFile, DataFormat.XML);
+        return dataString;
     }
 
     public List<UnifiedHeirarchicalObject> getNodesByXPath(String xpath) {
@@ -44,7 +48,7 @@ public class DataFileLoader {
     public Map<String, List<UnifiedHeirarchicalObject>> getXPathToDataMap() {
         return this.xPathToData;
     }
-    
+
     public UnifiedHeirarchicalObject getDataFile() {
         return this.dataFile;
     }

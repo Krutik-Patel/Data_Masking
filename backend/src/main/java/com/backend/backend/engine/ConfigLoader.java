@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.backend.backend.utils.loader.DataLoader;
+import com.backend.backend.utils.writer.DataWriter;
+import com.backend.backend.utils.writer.DataWriter.DataFormat;
 import com.backend.backend.masks.MaskingFactory;
 import com.backend.backend.masks.MaskingStrategy;
 import com.backend.backend.utils.UnifiedHeirarchicalObject;
@@ -45,6 +47,11 @@ public class ConfigLoader {
 
     public Map<String, MaskingStrategy> getMaskStrategyMap() {
         return this.maskStrategyMap;
+    }
+
+    public String stringifyConfig() throws Exception {
+        String configString = new DataWriter().writeToString(this.configTree, DataFormat.XML);
+        return configString;
     }
 }
 
