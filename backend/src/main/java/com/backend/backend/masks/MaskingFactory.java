@@ -8,6 +8,7 @@ public class MaskingFactory {
             case "HASH": return new HashMaskingStrategy(parameters);
             case "RANGESHIFT": return new RangeShiftStrategy(parameters);
             case "SUBSTITUTION": return new SubstitutionStrategy(parameters);
+            case "REDACT": return new RedactionMaskingStrategy(parameters);
             case "KANONYMIZATION": return new KAnonymizationMaskingStrategy(parameters);
 
             default:
