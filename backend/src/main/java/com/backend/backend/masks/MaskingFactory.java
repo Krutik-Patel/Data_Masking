@@ -9,6 +9,7 @@ public class MaskingFactory {
             case "RANGESHIFT": return new RangeShiftStrategy(parameters);
             case "SUBSTITUTION": return new SubstitutionStrategy(parameters);
             case "REDACT": return new RedactionMaskingStrategy(parameters);
+            case "EMAIL": return new EmailMaskingStrategy(parameters);
             case "KANONYMIZATION": return new KAnonymizationMaskingStrategy(parameters);
 
             default:
