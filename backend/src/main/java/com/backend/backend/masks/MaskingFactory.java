@@ -7,6 +7,7 @@ public class MaskingFactory {
         switch (maskingMethod) {
             case "HASH": return new HashMaskingStrategy(parameters);
             case "RANGESHIFT": return new RangeShiftStrategy(parameters);
+            case "SUBSTITUTION": return new SubstitutionStrategy(parameters);
             case "KANONYMIZATION": return new KAnonymizationMaskingStrategy(parameters);
 
             default:
