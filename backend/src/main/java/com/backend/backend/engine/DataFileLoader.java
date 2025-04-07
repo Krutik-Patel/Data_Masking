@@ -28,7 +28,8 @@ public class DataFileLoader {
 
     private void createXPathToDataReferenceMapping(UnifiedHeirarchicalObject node, String currXpath) {
         if (!node.hasChildren()) {
-            xPathToData.computeIfAbsent(currXpath, k -> new ArrayList<>()).add(node);
+            String xPath = currXpath + "/" + node.getKey();
+            xPathToData.computeIfAbsent(xPath, k -> new ArrayList<>()).add(node);
         } else {
             String nextXpath = currXpath + "/" + node.getKey();
             List<UnifiedHeirarchicalObject> children = node.getChildren();

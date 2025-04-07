@@ -2,7 +2,9 @@ package com.backend.backend;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,15 +24,19 @@ public class ServerController {
     }
 
     @PostMapping("/uploads/data")
-    public Response uploadData(MultipartFile data) {
+    public Response uploadData(@RequestParam("file") MultipartFile data) {
+
+        String successMessage;
+        System.err.println(data);
+        if (data != null) successMessage = "Data Uploaded Successfully";
+        else successMessage = "Data not received!";
         String dataFileText = this.engineInstance.putDataFile(data);
-        String successMessage = "Data Uploaded Successfully";
         Response response = new Response(successMessage, dataFileText);
         return response;
     }
 
     @PostMapping("/uploads/config")
-    public Response uploadConfig(MultipartFile data) {
+    public Response uploadConfig(@RequestParam("file") MultipartFile data) {
         String configFileText = this.engineInstance.putConfig(data);
         String successMessage = "Config File uploaded Successfully";
         Response response = new Response(successMessage, configFileText);
@@ -39,13 +45,15 @@ public class ServerController {
 
     @GetMapping("/maskData")
     public Response sendMaskedData() {
-        String output;
+        String successMessage, maskedOutput;
         if (this.engineInstance.isReadyForMasking()) {
-            output = this.engineInstance.maskData();
+            successMessage = "Masking Completed!";
+            maskedOutput = this.engineInstance.maskData();
         } else {
-            output = "Upload both data and config file first!!";
+            successMessage = "Masking Failed!";
+            maskedOutput = "Upload both data and config file first!!";
         }
-        Response returnResponse = new Response(output);
+        Response returnResponse = new Response(successMessage, maskedOutput);
         return returnResponse; 
     }
 }

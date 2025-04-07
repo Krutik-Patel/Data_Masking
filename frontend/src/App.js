@@ -7,6 +7,7 @@ function Upload() {
     const [dataMessage, setDataMessage] = useState("");
     const [configRules, setConfigRules] = useState([]);
     const [maskedData, setMaskedData] = useState("");
+    const [maskedDataMessage, setMaskedDataMessage] = useState("");
  
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
@@ -26,11 +27,11 @@ function Upload() {
             
             if (upload_path === 'config') {
                 setConfigMessage(response.data.message);
-                setConfigRules(response.data.configRules);
-                console.log(response.data.configRules);
+                setConfigRules(response.data.additionalText);
+                console.log(response.data.additionalText);
             } else if (upload_path === 'data') {
                 setDataMessage(response.data.message);
-                console.log("thisa");
+                console.log(response.data.additionalText);
             }
         } catch (error) {
             if (upload_path === 'config') {
@@ -46,8 +47,9 @@ function Upload() {
     const maskData = async () => {
         try {
             const response = await axios.get("http://localhost:8080/maskData");
-            setMaskedData(response.data.maskedData);
-            console.log(response.data.maskedData);
+            setMaskedDataMessage(response.data.message);
+            setMaskedData(response.data.additionalText);;
+            console.log(response.data.additionalText);
         } catch (error) {
             console.error("Error masking data:", error);
         }
@@ -68,41 +70,16 @@ function Upload() {
                     <button onClick={() => maskData()}>MASK DATA</button>
                 </div>
             )}
-            {configRules.length > 0 && (
+            {configRules.length > 0 && typeof configRules === "string" && (
                 <div>
-                    <h3>Config Rules:</h3>
-                    <table border="1" style={{ margin: "0 auto" }}>
-                        <thead>
-                            <tr>
-                                <th>Field Name</th>
-                                {/* <th>Field XPath</th> */}
-                                <th>Data Type</th>
-                                <th>Is Primary Key</th>
-                                <th>Morphing Methods</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {configRules.map((rule, index) => (
-                                <tr key={index}>
-                                    <td>{rule.field_name}</td>
-                                    {/* <td>{rule.field_xPath}</td> */}
-                                    <td>{rule.dataType}</td>
-                                    <td>{rule.isPrimaryKey}</td>
-                                    <td>
-                                        {rule.morphing_methods && rule.morphing_methods.morphing_method ? (
-                                            <ul>
-                                                {Object.entries(rule.morphing_methods.morphing_method).map(([key, value], idx) => (
-                                                    <li key={idx}>{`${key}: ${value}`}</li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            "N/A"
-                                        )}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <h3>Config Rules (XML):</h3>
+                    <pre>{configRules}</pre>
+                </div>
+            )}
+            {maskedData.length > 0 && (
+                <div>
+                    <h3>Masked Data: {maskedDataMessage}</h3>
+                    <pre>{maskedData}</pre>
                 </div>
             )}
             {maskedData.length > 0 && (

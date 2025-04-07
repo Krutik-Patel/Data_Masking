@@ -39,6 +39,7 @@ public class Engine {
     public String putConfig(MultipartFile config) {
         try {
             this.configLoader = new ConfigLoader();
+            this.config = config;
             this.configLoader.parse(this.config);
             return this.configLoader.stringifyConfig();
         } catch(Exception e) {
@@ -50,6 +51,7 @@ public class Engine {
     public String putDataFile(MultipartFile data) {
         try {
             this.dataFileLoader = new DataFileLoader();
+            this.data = data;
             this.dataFileLoader.parse(this.data);
             return this.dataFileLoader.stringifyData();
         } catch (Exception e) {
