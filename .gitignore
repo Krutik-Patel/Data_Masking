@@ -1,7 +1,5 @@
 backend/node_modules/
 frontend/node_modules/
-example_config_and_engine_core_files/config_files/
-example_config_and_engine_core_files/data_files/
 example_config_and_engine_core_files/morphed_data_files/
 backend/uploads/
 .vscode/

@@ -1,0 +1,18 @@
+<!-- The primary key and foreign key infos are emmbeded in the fields info -->
+
+<fields_info>
+    <field>
+        <field_name>field name</field_name>
+        <!-- <path></path>   This is optional. Either we expect the user to give this to us. Or we can extract the xpath using the field_name -->
+        <field_xPath>field xpath</field_xPath>
+        <dataType>string</dataType>
+        <isPrimaryKey>false</isPrimaryKey>   <!-- For primary key-->
+        <refersTo></refersTo>           <!-- If the field is acting as foreign key-->
+        <morphing_method>
+            <method_name>HASH</method_name>
+            <method_parameters>
+                <algorithm>SHA256</algorithm>
+            </method_parameters>
+        </morphing_method>
+    </field>
+</fields_info>
