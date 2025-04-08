@@ -1,96 +1,141 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+import ConfigUploader from "./components/ConfigUploader";
+import DataUploader from "./components/DataUploader";
+import { useEffect } from "react";
+
+
+const BASE_URL = "http://localhost:8080";
 
 function Upload() {
-    const [file, setFile] = useState(null);
     const [configMessage, setConfigMessage] = useState("");
     const [dataMessage, setDataMessage] = useState("");
-    const [configRules, setConfigRules] = useState([]);
+    const [dataText, setDataText] = useState("");
+    const [configRules, setConfigRules] = useState("");
     const [maskedData, setMaskedData] = useState("");
     const [maskedDataMessage, setMaskedDataMessage] = useState("");
- 
-    const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
-    };
-
-    const handleUpload = async (upload_path) => {
+    const [loading, setLoading] = useState(false);
+    const [progress, setProgress] = useState(0);
+    const [darkMode, setDarkMode] = useState(true);
+    const toggleDarkMode = () => setDarkMode((prev) => !prev);
+    useEffect(() => {
+        document.body.classList.remove("light-mode", "dark-mode");
+        document.body.classList.add(darkMode ? "dark-mode" : "light-mode");
+      }, [darkMode]);
+      
+    const configUpload = async (file) => {
         if (!file) return;
-
+        setLoading(true);
+        setProgress(20);
         const formData = new FormData();
         formData.append("file", file);
 
         try {
-            const response = await axios.post(`http://localhost:8080/uploads/${upload_path}`, formData, {
-                headers: { "Content-Type": "multipart/form-data" }
-            });
-
-            
-            if (upload_path === 'config') {
-                setConfigMessage(response.data.message);
-                setConfigRules(response.data.additionalText);
-                console.log(response.data.additionalText);
-            } else if (upload_path === 'data') {
-                setDataMessage(response.data.message);
-                console.log(response.data.additionalText);
+        const response = await axios.post(`${BASE_URL}/uploads/config`, formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+            onUploadProgress: (progressEvent) => {
+            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setProgress(percent);
             }
+        });
+            setConfigMessage(response.data.message);
+            setConfigRules(response.data.additionalText);
+            toast.success("Config uploaded successfully");
+        
         } catch (error) {
-            if (upload_path === 'config') {
-                setConfigMessage("Upload failed");
-                console.log("thisb");
-            } else if (upload_path === 'data') {
-                setDataMessage("Upload failed");
-                console.log("thisc");
+            const errMsg = error.response?.data?.message || "Upload failed";
+            toast.error(errMsg);
+            setConfigMessage(errMsg);
+        } finally {
+            setLoading(false);
+            setProgress(0);
+        }
+    }
+
+    const dataUpload = async (file) => {
+        if (!file) return;
+        setLoading(true);
+        setProgress(20);
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+        const response = await axios.post(`${BASE_URL}/uploads/data`, formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+            onUploadProgress: (progressEvent) => {
+            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setProgress(percent);
             }
+        });
+
+
+        setDataMessage(response.data.message);
+        setDataText(response.data.additionalText);
+        toast.success("Data uploaded successfully");
+        } catch (error) {
+            const errMsg = error.response?.data?.message || "Upload failed";
+            toast.error(errMsg);
+            setDataMessage(errMsg);
+        } finally {
+            setLoading(false);
+            setProgress(0);
         }
     };
-    
+
     const maskData = async () => {
+        setLoading(true);
+        setProgress(10);
         try {
-            const response = await axios.get("http://localhost:8080/maskData");
+            const response = await axios.get(`${BASE_URL}/maskData`);
             setMaskedDataMessage(response.data.message);
-            setMaskedData(response.data.additionalText);;
-            console.log(response.data.additionalText);
+            setMaskedData(response.data.additionalText);
+            toast.success("Data masked successfully");
         } catch (error) {
+            toast.error("Error masking data");
             console.error("Error masking data:", error);
+        } finally {
+            setLoading(false);
+            setProgress(0);
         }
     };
 
     return (
-        <div style={{ textAlign: "center", padding: "20px" }}>
-            <h2>Config File Upload</h2>
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={() => handleUpload('config')}>Upload</button>
-            <p>{configMessage}</p>
-            <h2>Data file Upload</h2>
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={() => handleUpload('data')}>Upload</button>
-            <p>{dataMessage}</p>
-            {dataMessage.length > 0 && (
-                <div>
-                    <button onClick={() => maskData()}>MASK DATA</button>
-                </div>
-            )}
-            {configRules.length > 0 && typeof configRules === "string" && (
-                <div>
-                    <h3>Config Rules (XML):</h3>
-                    <pre>{configRules}</pre>
-                </div>
-            )}
-            {maskedData.length > 0 && (
-                <div>
-                    <h3>Masked Data: {maskedDataMessage}</h3>
-                    <pre>{maskedData}</pre>
-                </div>
-            )}
-            {maskedData.length > 0 && (
-                <div>
-                    <h3>Masked Data:</h3>
-                    <pre>{maskedData}</pre>
-                </div>
-            )}
+        <div className={`upload-container ${darkMode ? "dark-mode" : "light-mode"}`}>
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop />
+        <h1>Data Masking App</h1>
+        <button onClick={toggleDarkMode} className="toggle-mode-btn">
+            Switch to {darkMode ? "Light" : "Dark"} Mode
+        </button>
+        {progress > 0 && (
+            <div className="progress-bar">
+            <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+            </div>
+        )}
+
+        <ConfigUploader
+            onUpload={(file) => configUpload(file)}
+            message={configMessage}
+            rules={configRules}
+            loading={loading}
+            darkMode={darkMode}
+        />
+        <div className="card">
+            <DataUploader
+                    onUpload={(file) => dataUpload(file)}
+                    message={dataMessage}
+                    onMask={maskData}
+                    loading={loading}
+                    showData={dataText}
+                    maskedData={maskedData}
+                    maskedDataMessage={maskedDataMessage}
+                    darkMode={darkMode}
+                />
+        </div>
         </div>
     );
 }
-
 
 export default Upload;
