@@ -1,16 +1,50 @@
 package com.backend.backend.masks;
 
 import com.backend.backend.utils.UnifiedHeirarchicalObject;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class KAnonymizationMaskingStrategy implements MaskingStrategy {    
-    private String algorithm;
+public class KAnonymizationMaskingStrategy implements MaskingStrategy {
+
+    private int k;
+    private List<String> quasiIdentifiers;
+
     public KAnonymizationMaskingStrategy(Map<String, Object> params) {
-        this.algorithm = (String) params.get("algorithm");
+        this.k = Integer.parseInt(params.get("k").toString());
+        this.quasiIdentifiers = (List<String>) params.get("quasi_identifiers");
     }
-    public void mask(List<UnifiedHeirarchicalObject> dataSlices) {
-        throw new UnsupportedOperationException("Unimplemented Masking method: Kanonymization...");
 
+    @Override
+    public void mask(List<UnifiedHeirarchicalObject> dataSlices) {
+        if (dataSlices == null || dataSlices.isEmpty()) return;
+
+        // Group objects by quasi-identifier values extracted via XPaths
+        Map<String, List<UnifiedHeirarchicalObject>> groups = new HashMap<>();
+
+        for (UnifiedHeirarchicalObject obj : dataSlices) {
+            // Build a key by collecting values for all provided XPaths
+            List<String> values = new ArrayList<>();
+            for (String xpath : quasiIdentifiers) {
+                UnifiedHeirarchicalObject childNode = obj.getChildByXpath(xpath);
+                // Use empty string if the node is missing or uninitialized
+                values.add(childNode != null ? childNode.getValue() : "");
+            }
+            String key = String.join("|", values);
+            groups.computeIfAbsent(key, keyVal -> new ArrayList<>()).add(obj);
+        }
+
+        // Mask values if the group size is smaller than k
+        for (Map.Entry<String, List<UnifiedHeirarchicalObject>> entry : groups.entrySet()) {
+            if (entry.getValue().size() < k) {
+                for (UnifiedHeirarchicalObject obj : entry.getValue()) {
+                    for (String xpath : quasiIdentifiers) {
+                        UnifiedHeirarchicalObject childNode = obj.getChildByXpath(xpath);
+                        if (childNode != null) {
+                            childNode.setValue("*");
+                        }
+                    }
+                }
+            }
+        }
     }
 }
