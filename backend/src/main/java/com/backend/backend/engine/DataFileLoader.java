@@ -37,6 +37,33 @@ public class DataFileLoader {
         }
     }
 
+    public List<UnifiedHeirarchicalObject> getFullPackagedData() {
+        List<UnifiedHeirarchicalObject> result = new ArrayList<>();
+    
+        if (xPathToData == null || xPathToData.isEmpty()) return result;
+    
+        // Determine the number of rows based on the size of any one column
+        int rowCount = xPathToData.values().iterator().next().size();
+    
+        for (int i = 0; i < rowCount; i++) {
+            UnifiedHeirarchicalObject rowPackage = new UnifiedHeirarchicalObject("package", null);
+    
+            for (Map.Entry<String, List<UnifiedHeirarchicalObject>> entry : xPathToData.entrySet()) {
+                List<UnifiedHeirarchicalObject> columnValues = entry.getValue();
+    
+                // Defensive check in case of unequal column lengths
+                if (i < columnValues.size()) {
+                    UnifiedHeirarchicalObject cell = columnValues.get(i);
+                    rowPackage.addChild(cell); // Assuming addChild adds a value under the xpath
+                }
+            }
+    
+            result.add(rowPackage);
+        }
+    
+        return result;
+    }
+    
     public String stringifyData() throws Exception {
         String dataString = new DataWriter().writeToString(dataFile, DataFormat.XML);
         return dataString;
