@@ -3,6 +3,7 @@ package com.backend.backend.engine;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.rmi.server.ExportException;
 import java.util.ArrayList;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +16,7 @@ import com.backend.backend.utils.writer.DataWriter.DataFormat;
 public class DataFileLoader {
     private UnifiedHeirarchicalObject dataFile;
     private Map<String, List<UnifiedHeirarchicalObject>> xPathToData;
+    private List<UnifiedHeirarchicalObject> packagedData;
 
     public DataFileLoader() {
         this.xPathToData = new HashMap<>();
@@ -37,7 +39,14 @@ public class DataFileLoader {
         }
     }
 
-    public List<UnifiedHeirarchicalObject> getFullPackagedData() {
+    public List<UnifiedHeirarchicalObject> getFullPackagedData() throws Exception {
+        if (this.packagedData == null) {
+            this.packagedData = packageDataAsRecords();
+        }
+        return this.packagedData;
+    }
+
+    private List<UnifiedHeirarchicalObject> packageDataAsRecords() throws Exception {
         List<UnifiedHeirarchicalObject> result = new ArrayList<>();
     
         if (xPathToData == null || xPathToData.isEmpty()) return result;

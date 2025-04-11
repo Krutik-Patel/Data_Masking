@@ -18,9 +18,11 @@ public class UnifiedHeirarchicalObjectTest {
     }
 
     @Test
-    public void testChildFunctions() {
+    public void testChildFunctions() throws Exception {
         UnifiedHeirarchicalObject object = new UnifiedHeirarchicalObject("root", "value");
+        object.setXpath("/root");
         UnifiedHeirarchicalObject child = new UnifiedHeirarchicalObject("child1", "childvalue");
+        child.setXpath("/root/child1");
         object.addChild(child);
         assertFalse(object.getChildren().isEmpty());
         assertEquals("child1", object.getChildren().get(0).getKey());

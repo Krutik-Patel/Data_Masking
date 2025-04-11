@@ -36,7 +36,13 @@ public class UnifiedHeirarchicalObject {
     public List<UnifiedHeirarchicalObject> getChildren() { return this.children; }
     public UnifiedHeirarchicalObject getChildByXpath(String xpath) { return this.nodeByXpath.get(xpath); } 
     public UnifiedHeirarchicalObject getNthChild(int index) { return this.children.get(index); }
-    public void addChild(UnifiedHeirarchicalObject child) { this.children.add(child); }
+    public void addChild(UnifiedHeirarchicalObject child) throws Exception { 
+        if (child.getXpath() == null) {
+            throw new Exception("XPath not initialized...");
+        }
+        this.nodeByXpath.put(child.getXpath(), child);
+        this.children.add(child); 
+    }
 }
 
 

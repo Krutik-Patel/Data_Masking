@@ -10,27 +10,37 @@ public class JSONLoader implements DataLoaderStrategy {
     public UnifiedHeirarchicalObject parseFile(MultipartFile file) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode rootNode = mapper.readTree(file.getInputStream());
-        UnifiedHeirarchicalObject object = convertNode(rootNode, "root");
+        UnifiedHeirarchicalObject object = convertNode(rootNode, "root", "");
         return object;
     }
 
-    private UnifiedHeirarchicalObject convertNode(JsonNode jsonNode, String key) {
+    private UnifiedHeirarchicalObject convertNode(JsonNode jsonNode, String key, String xPath) throws Exception {
         UnifiedHeirarchicalObject node;
         if (jsonNode.isContainerNode()) {
             node = new UnifiedHeirarchicalObject(key, null);
+            String newXpath = xPath + "/" + key;
+            node.setXpath(newXpath);
             if (jsonNode.isObject()) {
                 jsonNode.fieldNames().forEachRemaining(field -> {
-                    JsonNode child = jsonNode.get(field);
-                    node.addChild(convertNode(child, field));
+                    try {
+                        JsonNode child = jsonNode.get(field);
+                        UnifiedHeirarchicalObject childNode = convertNode(child, field, newXpath);
+                        node.addChild(childNode);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 });
             } else if (jsonNode.isArray()) {
                 for (JsonNode child : jsonNode) {
-                    node.addChild(convertNode(child, key));
+                    UnifiedHeirarchicalObject childNode = convertNode(child, key, newXpath);
+                    node.addChild(childNode);
                 } 
             }
         } else {
             String textValue = jsonNode.asText();
+            String newXpath = xPath + "/" + key;
             node = new UnifiedHeirarchicalObject(key, textValue.isEmpty() ? null : textValue);
+            node.setXpath(newXpath);
         }
 
         return node;

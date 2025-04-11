@@ -18,11 +18,14 @@ public class XMLWriterTest {
     }
     
     @Test
-    public void testWriteToString_NodeWithChildren() {
+    public void testWriteToString_NodeWithChildren() throws Exception {
         // Create a root node with no value but with children
         UnifiedHeirarchicalObject root = new UnifiedHeirarchicalObject("root", null);
         UnifiedHeirarchicalObject child1 = new UnifiedHeirarchicalObject("child", "val1");
         UnifiedHeirarchicalObject child2 = new UnifiedHeirarchicalObject("child2", "val2");
+        root.setXpath("/root");
+        child1.setXpath("/root/child");
+        child2.setXpath("/root/child2");
         
         root.addChild(child1);
         root.addChild(child2);

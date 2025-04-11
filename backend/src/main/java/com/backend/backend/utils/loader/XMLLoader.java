@@ -23,13 +23,14 @@ public class XMLLoader implements DataLoaderStrategy {
         doc.getDocumentElement().normalize();
 
         Element rootElement = doc.getDocumentElement();
-        UnifiedHeirarchicalObject root = convertElement(rootElement);
+        UnifiedHeirarchicalObject root = convertElement(rootElement, "");
         return root;
     }
 
-    private UnifiedHeirarchicalObject convertElement(Element element) {
+    private UnifiedHeirarchicalObject convertElement(Element element, String currentXPath) throws Exception {
         NodeList childNodes = element.getChildNodes();
         boolean hasElementChild = false;
+        String newXPath = currentXPath + "/" + element.getTagName();
         for (int i = 0; i < childNodes.getLength(); i++) {
             if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 hasElementChild = true;
@@ -40,16 +41,18 @@ public class XMLLoader implements DataLoaderStrategy {
         UnifiedHeirarchicalObject node = null;
         if (hasElementChild) {
             node = new UnifiedHeirarchicalObject(element.getTagName(), null);
+            node.setXpath(newXPath);
             for (int i = 0; i < childNodes.getLength(); i++) {
                 Node child = childNodes.item(i);
                 if (child.getNodeType() == Node.ELEMENT_NODE) {
-                    UnifiedHeirarchicalObject childNode = convertElement((Element) child);
+                    UnifiedHeirarchicalObject childNode = convertElement((Element) child, newXPath);
                     node.addChild(childNode);
                 }
             }
         } else {
             String text = element.getTextContent().trim();
             node = new UnifiedHeirarchicalObject(element.getTagName(), text.isEmpty() ? null : text);
+            node.setXpath(newXPath);
         }
         return node;
     }

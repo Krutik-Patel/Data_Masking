@@ -1,6 +1,7 @@
 package com.backend.backend.engine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -94,13 +95,13 @@ public class DataFileLoaderTest {
         
         // Column 1: /root/child
         List<UnifiedHeirarchicalObject> col1 = new ArrayList<>();
-        col1.add(new UnifiedHeirarchicalObject("child", "value1"));
-        col1.add(new UnifiedHeirarchicalObject("child", "value2"));
+        col1.add(new UnifiedHeirarchicalObject("child", "value1", "/root/child"));
+        col1.add(new UnifiedHeirarchicalObject("child", "value2", "/root/child"));
         
         // Column 2: /root/child1
         List<UnifiedHeirarchicalObject> col2 = new ArrayList<>();
-        col2.add(new UnifiedHeirarchicalObject("child1", "value3"));
-        col2.add(new UnifiedHeirarchicalObject("child1", "value4"));
+        col2.add(new UnifiedHeirarchicalObject("child1", "value3", "/root/child1"));
+        col2.add(new UnifiedHeirarchicalObject("child1", "value4", "/root/child1"));
         
         fakeMap.put("/root/child", col1);
         fakeMap.put("/root/child1", col2);
@@ -112,7 +113,7 @@ public class DataFileLoaderTest {
         
         // Now test the getFullPackagedData method
         List<UnifiedHeirarchicalObject> packagedRows = loader.getFullPackagedData();
-        
+        assertNotNull(packagedRows);
         // There should be 2 rows (based on the size of a column)
         assertEquals(2, packagedRows.size(), "There should be 2 packaged rows.");
         
