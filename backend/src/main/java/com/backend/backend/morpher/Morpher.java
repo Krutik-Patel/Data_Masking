@@ -13,5 +13,16 @@ public class Morpher {
             List<UnifiedHeirarchicalObject> data = dataFileLoader.getNodesByXPath(xPath);
             maskingMethod.mask(data);
         });
+
+        List<MaskingStrategy> fullDataMasks = configLoader.getFullDataMaskStrategyList();
+        fullDataMasks.forEach((maskingMethod) -> {
+            try {
+                List<UnifiedHeirarchicalObject> packagedData = dataFileLoader.getFullPackagedData();
+                maskingMethod.mask(packagedData);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("UNABLE TO GET FULL PACKAGED DATA!!");
+            }
+        });
     }
 }

@@ -58,4 +58,37 @@ public class XMLLoaderTest {
         });
         assertNotNull(exception);
     }
+
+    @Test
+    public void testParseFile_xpathAvailable() throws Exception {
+        String xmlContent = "<root>"
+                          + "  <child>value</child>"
+                          + "  <child1><innerchild>value1</innerchild></child1>"
+                          + "</root>";
+        MockMultipartFile file = new MockMultipartFile("file", "test.xml", "text/xml", xmlContent.getBytes());
+        XMLLoader loader = new XMLLoader();
+
+        UnifiedHeirarchicalObject root = loader.parseFile(file);
+        assertEquals(root.getXpath(), "/root");
+        assertEquals(root.getNthChild(0).getXpath(), "/root/child");
+        assertEquals(root.getNthChild(1).getXpath(), "/root/child1");
+        assertEquals(root.getNthChild(1).getNthChild(0).getXpath(), "/root/child1/innerchild");
+    }
+
+    @Test
+    public void testParseFile_getChildByXpath() throws Exception {
+        String xmlContent = "<root>"
+        + "  <child>value</child>"
+        + "  <child1><innerchild>value1</innerchild></child1>"
+        + "</root>";
+        MockMultipartFile file = new MockMultipartFile("file", "test.xml", "text/xml", xmlContent.getBytes());
+        XMLLoader loader = new XMLLoader();
+
+        UnifiedHeirarchicalObject root = loader.parseFile(file);    
+
+        assertEquals(root.getChildByXpath("/root/child1").getKey(), "child1");
+        assertEquals(root.getChildByXpath("/root/child").getValue(), "value");
+        assertEquals(root.getChildByXpath("/root/child1").getChildByXpath("/root/child1/innerchild").getValue(), "value1");
+
+    }
 }

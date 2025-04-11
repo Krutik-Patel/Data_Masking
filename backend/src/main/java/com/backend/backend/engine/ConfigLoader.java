@@ -1,5 +1,6 @@
 package com.backend.backend.engine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -15,9 +16,11 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class ConfigLoader {
     Map<String, MaskingStrategy> maskStrategyMap;
+    List<MaskingStrategy> fulldataMasksList;
     private UnifiedHeirarchicalObject configTree;
     public ConfigLoader() {
         this.maskStrategyMap = new HashMap<>();
+        this.fulldataMasksList = new ArrayList<>();
     }
 
     public void parse(MultipartFile config) throws Exception {
@@ -26,7 +29,11 @@ public class ConfigLoader {
         // first level is fields_info, children are the different fields
         List<UnifiedHeirarchicalObject> fields = this.configTree.getChildren();
         fields.forEach((field) -> {
-            mapConfigToMask(field);
+            if (field.getKey().equals("field")) {
+                mapConfigToMask(field);
+            } else {
+                mapFullDataConfigMask(field);
+            }
         });
     }
 
@@ -44,6 +51,26 @@ public class ConfigLoader {
         MaskingStrategy mask_instance = MaskingFactory.createMask(maskingMethod, parameters);
         this.maskStrategyMap.put(fieldXPath, mask_instance);
     } 
+
+    private void mapFullDataConfigMask(UnifiedHeirarchicalObject field) {
+        String algorithm = field.getNthChild(0).getValue();
+        List<String> quasiIDList = new ArrayList<>();
+        for (UnifiedHeirarchicalObject child: field.getNthChild(1).getChildren()) {
+            quasiIDList.add(child.getValue());
+        }
+        List<UnifiedHeirarchicalObject> mask_params = field.getNthChild(2).getChildren();
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put(field.getNthChild(1).getKey(), quasiIDList);
+        for (UnifiedHeirarchicalObject param: mask_params) {
+            parameters.put(param.getKey(), param.getValue());
+        }
+        MaskingStrategy mask_instance = MaskingFactory.createMask(algorithm, parameters);
+        this.fulldataMasksList.add(mask_instance);
+    }
+
+    public List<MaskingStrategy> getFullDataMaskStrategyList() {
+        return this.fulldataMasksList;
+    }
 
     public Map<String, MaskingStrategy> getMaskStrategyMap() {
         return this.maskStrategyMap;

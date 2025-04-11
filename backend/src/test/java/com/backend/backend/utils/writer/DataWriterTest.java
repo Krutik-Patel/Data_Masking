@@ -13,6 +13,10 @@ public class DataWriterTest {
         UnifiedHeirarchicalObject root = new UnifiedHeirarchicalObject("root", null);
         UnifiedHeirarchicalObject child1 = new UnifiedHeirarchicalObject("child", "val1");
         UnifiedHeirarchicalObject child2 = new UnifiedHeirarchicalObject("child2", "val2");
+        root.setXpath("/root");
+        child1.setXpath("/root/child");
+        child2.setXpath("/root/child2");
+
 
         root.addChild(child1);
         root.addChild(child2);
