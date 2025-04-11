@@ -2,7 +2,6 @@ package com.backend.backend.masks;
 
 import com.backend.backend.utils.UnifiedHeirarchicalObject;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class KAnonymizationMaskingStrategy implements MaskingStrategy {
 
@@ -27,7 +26,7 @@ public class KAnonymizationMaskingStrategy implements MaskingStrategy {
             for (String xpath : quasiIdentifiers) {
                 UnifiedHeirarchicalObject childNode = obj.getChildByXpath(xpath);
                 // Use empty string if the node is missing or uninitialized
-                values.add(childNode != null ? childNode.getValue() : "");
+                values.add(childNode != null ? childNode.getValue() : null);
             }
             String key = String.join("|", values);
             groups.computeIfAbsent(key, keyVal -> new ArrayList<>()).add(obj);
