@@ -2,7 +2,7 @@ package com.backend.backend.masks;
 
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.codec.digest.DigestUtils.sha256Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import com.backend.backend.utils.UnifiedHeirarchicalObject;
 

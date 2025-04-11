@@ -11,7 +11,11 @@ public class MaskingFactory {
             case "REDACT": return new RedactionMaskingStrategy(parameters);
             case "EMAIL": return new EmailMaskingStrategy(parameters);
             case "KANONYMIZATION": return new KAnonymizationMaskingStrategy(parameters);
-
+            case "PARTIAL_MASKING": return new PartialMaskingStrategy(parameters);
+            case "RANDOMIZATION": return new RandomizationStrategy(parameters);
+            case "BINNING": return new BinningStrategy(parameters);
+            case "NOISE_INJECTION": return new NoiseInjectionStrategy(parameters);
+            
             default:
                 throw new IllegalArgumentException("Unsupported masking method: " + maskingMethod);
         }

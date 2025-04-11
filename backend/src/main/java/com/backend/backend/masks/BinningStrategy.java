@@ -1,0 +1,38 @@
+package com.backend.backend.masks;
+
+import java.util.List;
+import java.util.Map;
+import com.backend.backend.utils.UnifiedHeirarchicalObject;
+
+public class BinningStrategy implements MaskingStrategy {
+    // Bin size exponent
+    private int x;
+
+    // Constructor: Initialize bin size based on parameter x
+    public BinningStrategy(Map<String, Object> params) {
+        if (params != null) {
+            this.x = params.containsKey("x") ? (int) params.get("x") : 1;
+        } else {
+            this.x = 1; // Default value if params is null
+        }
+    }
+
+    // Mask method: Replace each numerical value with its bin range
+    @Override
+    public void mask(List<UnifiedHeirarchicalObject> dataSlices) {
+        dataSlices.forEach(row -> {
+            double n = Double.parseDouble(row.getValue());
+            int b = (int) Math.pow(10, x);  // Explicit cast to int
+
+            double lower = Math.floor(n / b) * b;  // Lower bound of bin
+            double upper = lower + b;              // Upper bound of bin
+
+            long lowerInt = (long) lower;
+            long upperInt = (long) upper;
+
+            String maskedValue = lowerInt + "-" + upperInt;
+
+            row.setValue(maskedValue);
+        });
+    }
+}
