@@ -9,13 +9,14 @@ public class KAnonymizationMaskingStrategy implements MaskingStrategy {
     private List<String> quasiIdentifiers;
 
     public KAnonymizationMaskingStrategy(Map<String, Object> params) {
-        this.k = Integer.parseInt(params.get("k").toString());
+        this.k = Integer.parseInt((String) params.get("k"));
         this.quasiIdentifiers = (List<String>) params.get("quasi_identifiers");
     }
 
     @Override
     public void mask(List<UnifiedHeirarchicalObject> dataSlices) {
-        if (dataSlices == null || dataSlices.isEmpty()) return;
+        if (dataSlices == null || dataSlices.isEmpty())
+            return;
 
         // Group objects by quasi-identifier values extracted via XPaths
         Map<String, List<UnifiedHeirarchicalObject>> groups = new HashMap<>();

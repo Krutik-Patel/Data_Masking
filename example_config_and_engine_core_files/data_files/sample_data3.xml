@@ -1,0 +1,294 @@
+<company>
+    <departments>
+        <department>
+            <dept_id>101</dept_id>
+            <dept_name>Engineering</dept_name>
+            <employees>
+                <employee>
+                    <emp_id>1002</emp_id>
+                    <name>Brian Smith</name>
+                    <age>40</age>
+                    <gender>M</gender>
+                    <zip>234567</zip>
+                    <ssn>234-56-7890</ssn>
+                    <salary>91000</salary>
+                    <experience>12</experience>
+                    <city>Chicago</city>
+                    <phoneNumber>9812345670</phoneNumber>
+                    <debitCardNo>4532789012345678</debitCardNo>
+                    <email>brian.smith@company.com</email>
+                    <disease>diabetes</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ002</proj_id>
+                            <proj_name>Neural NetX</proj_name>
+                            <assigned_date>2023-03-10</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1003</emp_id>
+                    <name>Clara Fernandes</name>
+                    <age>30</age>
+                    <gender>F</gender>
+                    <zip>345678</zip>
+                    <ssn>345-67-8901</ssn>
+                    <salary>72000</salary>
+                    <experience>3</experience>
+                    <city>Boston</city>
+                    <phoneNumber>9876543201</phoneNumber>
+                    <debitCardNo>4916123498761234</debitCardNo>
+                    <email>clara.fernandes@company.com</email>
+                    <disease>cancer</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ003</proj_id>
+                            <proj_name>Vision Scope</proj_name>
+                            <assigned_date>2024-01-05</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1004</emp_id>
+                    <name>David Liu</name>
+                    <age>30</age>
+                    <gender>M</gender>
+                    <zip>456789</zip>
+                    <ssn>456-78-9012</ssn>
+                    <salary>88000</salary>
+                    <experience>9</experience>
+                    <city>San Francisco</city>
+                    <phoneNumber>9123456709</phoneNumber>
+                    <debitCardNo>5243123412345678</debitCardNo>
+                    <email>david.liu@company.com</email>
+                    <disease>thyroid</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ004</proj_id>
+                            <proj_name>Quantum Leap</proj_name>
+                            <assigned_date>2022-10-20</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1005</emp_id>
+                    <name>Eva Green</name>
+                    <age>40</age>
+                    <gender>F</gender>
+                    <zip>567890</zip>
+                    <ssn>567-89-0123</ssn>
+                    <salary>77000</salary>
+                    <experience>6</experience>
+                    <city>Seattle</city>
+                    <phoneNumber>9001234561</phoneNumber>
+                    <debitCardNo>6011123412341234</debitCardNo>
+                    <email>eva.green@company.com</email>
+                    <disease>cancer</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ005</proj_id>
+                            <proj_name>DeepMind Sync</proj_name>
+                            <assigned_date>2023-11-10</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1006</emp_id>
+                    <name>Faizan Khan</name>
+                    <age>30</age>
+                    <gender>M</gender>
+                    <zip>678901</zip>
+                    <ssn>678-90-1234</ssn>
+                    <salary>68000</salary>
+                    <experience>2</experience>
+                    <city>Delhi</city>
+                    <phoneNumber>9112345678</phoneNumber>
+                    <debitCardNo>3567123412340000</debitCardNo>
+                    <email>faizan.khan@company.com</email>
+                    <disease>heart</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ006</proj_id>
+                            <proj_name>NLP Boost</proj_name>
+                            <assigned_date>2024-02-12</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1007</emp_id>
+                    <name>Grace Thomas</name>
+                    <age>40</age>
+                    <gender>F</gender>
+                    <zip>789012</zip>
+                    <ssn>789-01-2345</ssn>
+                    <salary>94000</salary>
+                    <experience>18</experience>
+                    <city>Mumbai</city>
+                    <phoneNumber>9988776655</phoneNumber>
+                    <debitCardNo>4539987612344321</debitCardNo>
+                    <email>grace.thomas@company.com</email>
+                    <disease>cancer</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ007</proj_id>
+                            <proj_name>SecureAuth</proj_name>
+                            <assigned_date>2021-09-01</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1008</emp_id>
+                    <name>Harsh Patel</name>
+                    <age>30</age>
+                    <gender>M</gender>
+                    <zip>890123</zip>
+                    <ssn>890-12-3456</ssn>
+                    <salary>81000</salary>
+                    <experience>7</experience>
+                    <city>Ahmedabad</city>
+                    <phoneNumber>9812341298</phoneNumber>
+                    <debitCardNo>6011987654321234</debitCardNo>
+                    <email>harsh.patel@company.com</email>
+                    <disease>heart</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ008</proj_id>
+                            <proj_name>GenAI Builder</proj_name>
+                            <assigned_date>2023-05-08</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1009</emp_id>
+                    <name>Isha Reddy</name>
+                    <age>29</age>
+                    <gender>F</gender>
+                    <zip>901234</zip>
+                    <ssn>901-23-4567</ssn>
+                    <salary>69000</salary>
+                    <experience>4</experience>
+                    <city>Bangalore</city>
+                    <phoneNumber>9922334455</phoneNumber>
+                    <debitCardNo>4532123412347777</debitCardNo>
+                    <email>isha.reddy@company.com</email>
+                    <disease>cancer</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ009</proj_id>
+                            <proj_name>SmartGrid AI</proj_name>
+                            <assigned_date>2024-03-19</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+            </employees>
+        </department>
+        <department>
+            <dept_id>102</dept_id>
+            <dept_name>Marketing</dept_name>
+            <employees>
+                <employee>
+                    <emp_id>1010</emp_id>
+                    <name>Junaid Alam</name>
+                    <age>37</age>
+                    <gender>M</gender>
+                    <zip>912345</zip>
+                    <ssn>912-34-5678</ssn>
+                    <salary>87000</salary>
+                    <experience>10</experience>
+                    <city>Hyderabad</city>
+                    <phoneNumber>9876512345</phoneNumber>
+                    <debitCardNo>6011567890123456</debitCardNo>
+                    <email>junaid.alam@company.com</email>
+                    <disease>none</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ010</proj_id>
+                            <proj_name>EdgeCompute</proj_name>
+                            <assigned_date>2022-08-14</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1011</emp_id>
+                    <name>Keerthi Menon</name>
+                    <age>32</age>
+                    <gender>F</gender>
+                    <zip>923456</zip>
+                    <ssn>923-45-6789</ssn>
+                    <salary>76000</salary>
+                    <experience>6</experience>
+                    <city>Kochi</city>
+                    <phoneNumber>9012348765</phoneNumber>
+                    <debitCardNo>4532987654321234</debitCardNo>
+                    <email>keerthi.menon@company.com</email>
+                    <disease>migraines</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ011</proj_id>
+                            <proj_name>CleanCodeX</proj_name>
+                            <assigned_date>2023-07-11</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1012</emp_id>
+                    <name>Liam Martinez</name>
+                    <age>20</age>
+                    <gender>M</gender>
+                    <zip>934567</zip>
+                    <ssn>934-56-7890</ssn>
+                    <salary>99000</salary>
+                    <experience>15</experience>
+                    <city>Los Angeles</city>
+                    <phoneNumber>9123009876</phoneNumber>
+                    <debitCardNo>3567890123456789</debitCardNo>
+                    <email>liam.martinez@company.com</email>
+                    <disease>cholesterol</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ012</proj_id>
+                            <proj_name>Predict360</proj_name>
+                            <assigned_date>2021-04-22</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1013</emp_id>
+                    <name>Maya Kapoor</name>
+                    <age>26</age>
+                    <gender>F</gender>
+                    <zip>945678</zip>
+                    <ssn>945-67-8901</ssn>
+                    <salary>67000</salary>
+                    <experience>2</experience>
+                    <city>Pune</city>
+                    <phoneNumber>9876234512</phoneNumber>
+                    <debitCardNo>4916012345678901</debitCardNo>
+                    <email>maya.kapoor@company.com</email>
+                    <disease>none</disease>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ013</proj_id>
+                            <proj_name>InsightViz</proj_name>
+                            <assigned_date>2024-01-17</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+            </employees>
+        </department>
+    </departments>
+    <confidential>
+        <internal_notes>Top-secret project details.</internal_notes>
+    </confidential>
+</company>
+
+
+
+
+
+
+
+
+
+
+

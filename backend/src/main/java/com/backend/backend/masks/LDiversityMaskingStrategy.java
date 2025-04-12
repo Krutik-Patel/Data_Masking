@@ -10,14 +10,15 @@ public class LDiversityMaskingStrategy implements MaskingStrategy {
     private String sensitiveAttributeXpath;
 
     public LDiversityMaskingStrategy(Map<String, Object> params) {
-        this.l = Integer.parseInt(params.get("l").toString());
+        this.l = Integer.parseInt((String) params.get("l"));
         this.quasiIdentifiers = (List<String>) params.get("quasi_identifiers");
-        this.sensitiveAttributeXpath = params.get("sensitive_attribute").toString();
+        this.sensitiveAttributeXpath = "/company/departments/department/employees/employee/disease";
     }
 
     @Override
     public void mask(List<UnifiedHeirarchicalObject> dataSlices) {
-        if (dataSlices == null || dataSlices.isEmpty()) return;
+        if (dataSlices == null || dataSlices.isEmpty())
+            return;
 
         Map<String, List<UnifiedHeirarchicalObject>> groups = new HashMap<>();
 

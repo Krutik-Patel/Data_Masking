@@ -11,10 +11,11 @@ public class BinningStrategy implements MaskingStrategy {
     // Constructor: Initialize bin size based on parameter x
     public BinningStrategy(Map<String, Object> params) {
         if (params != null) {
-            this.x = params.containsKey("x") ? (int) params.get("x") : 1;
+            this.x = Integer.parseInt((String) params.get("x"));
         } else {
             this.x = 1; // Default value if params is null
         }
+        // this.x = 1;
     }
 
     // Mask method: Replace each numerical value with its bin range
@@ -22,10 +23,10 @@ public class BinningStrategy implements MaskingStrategy {
     public void mask(List<UnifiedHeirarchicalObject> dataSlices) {
         dataSlices.forEach(row -> {
             double n = Double.parseDouble(row.getValue());
-            int b = (int) Math.pow(10, x);  // Explicit cast to int
+            int b = (int) Math.pow(10, x); // Explicit cast to int
 
-            double lower = Math.floor(n / b) * b;  // Lower bound of bin
-            double upper = lower + b;              // Upper bound of bin
+            double lower = Math.floor(n / b) * b; // Lower bound of bin
+            double upper = lower + b; // Upper bound of bin
 
             long lowerInt = (long) lower;
             long upperInt = (long) upper;

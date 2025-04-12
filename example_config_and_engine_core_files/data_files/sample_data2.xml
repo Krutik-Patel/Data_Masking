@@ -1,0 +1,73 @@
+<company>
+    <departments>
+        <department>
+            <dept_id>101</dept_id>
+            <dept_name>Engineering</dept_name>
+            <employees>
+                <employee>
+                    <emp_id>1001</emp_id>
+                    <name>Alice Johnson</name>
+                    <ssn>123-45-6789</ssn>
+                    <salary>85000</salary>
+                    <experience>5</experience>
+                    <city>New York</city>
+                    <phoneNumber>9623487226</phoneNumber>
+                    <debitCardNo>1287534890123456</debitCardNo>
+                    <email>alice.johnson@company.com</email>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ001</proj_id>
+                            <proj_name>Alpha AI</proj_name>
+                            <assigned_date>2023-06-15</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+                <employee>
+                    <emp_id>1002</emp_id>
+                    <name>Bob Smith</name>
+                    <ssn>987-65-4321</ssn>
+                    <salary>92000</salary>
+                    <experience>15</experience>
+                    <city>calcutta</city>
+                    <phoneNumber>7823367234</phoneNumber>
+                    <debitCardNo>1234567890123456</debitCardNo>
+                    <email>bob.smith@company.com</email>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ002</proj_id>
+                            <proj_name>Beta Blockchain</proj_name>
+                            <assigned_date>2024-01-10</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+            </employees>
+        </department>
+        <department>
+            <dept_id>102</dept_id>
+            <dept_name>Marketing</dept_name>
+            <employees>
+                <employee>
+                    <emp_id>2001</emp_id>
+                    <name>Charlie Davis</name>
+                    <ssn>111-22-3333</ssn>
+                    <salary>78000</salary>
+                    <experience>23</experience>
+                    <city>Rameshwaram</city>
+                    <phoneNumber>7823487234</phoneNumber>
+                    <debitCardNo>1287137990123456</debitCardNo>
+                    <email>charlie.davis@company.com</email>
+                    <projects>
+                        <project>
+                            <proj_id>PRJ003</proj_id>
+                            <proj_name>Gamma Growth</proj_name>
+                            <assigned_date>2023-11-05</assigned_date>
+                        </project>
+                    </projects>
+                </employee>
+            </employees>
+        </department>
+    </departments>
+    <confidential>
+        <internal_notes>Top-secret project details.</internal_notes>
+    </confidential>
+</company>

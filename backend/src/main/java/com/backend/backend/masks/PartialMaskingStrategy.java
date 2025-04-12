@@ -8,15 +8,11 @@ public class PartialMaskingStrategy implements MaskingStrategy {
     private int x;
 
     public PartialMaskingStrategy(Map<String, Object> params) {
-        if (params != null && params.containsKey("x")) {
-            Object xObj = params.get("x");
-            if (xObj instanceof Integer) {
-                this.x = (Integer) xObj;
-            } else {
-                throw new IllegalArgumentException("Parameter 'x' must be an integer");
-            }
+        if (params != null) {
+            String x_str = (String) params.get("x");
+            this.x = Integer.parseInt(x_str);
         } else {
-            this.x = 4; // Default value if params is null or "x" is missing
+            this.x = 1; // Default value if params is null
         }
     }
 
