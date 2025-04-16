@@ -7,8 +7,10 @@ public class KAnonymizationMaskingStrategy implements MaskingStrategy {
 
     private int k;
     private List<String> quasiIdentifiers;
+    private Map<String, Object> parameters;
 
     public KAnonymizationMaskingStrategy(Map<String, Object> params) {
+        this.parameters = params;
         this.k = Integer.parseInt((String) params.get("k"));
         this.quasiIdentifiers = (List<String>) params.get("quasi_identifiers");
     }
@@ -47,4 +49,7 @@ public class KAnonymizationMaskingStrategy implements MaskingStrategy {
             }
         }
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

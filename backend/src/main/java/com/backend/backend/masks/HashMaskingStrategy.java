@@ -8,7 +8,9 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class HashMaskingStrategy implements MaskingStrategy {
     private String algorithm;
+    private Map<String, Object> parameters;
     public HashMaskingStrategy(Map<String, Object> params) {
+        this.parameters = params;
         if (params != null) {
             this.algorithm = (String) params.get("algorithm");
             switch (this.algorithm) {
@@ -32,4 +34,7 @@ public class HashMaskingStrategy implements MaskingStrategy {
         String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(value);
         return sha256hex;
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

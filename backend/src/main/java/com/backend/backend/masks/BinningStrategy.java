@@ -7,9 +7,11 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 public class BinningStrategy implements MaskingStrategy {
     // Bin size exponent
     private int x;
+    private Map<String, Object> parameters;
 
     // Constructor: Initialize bin size based on parameter x
     public BinningStrategy(Map<String, Object> params) {
+        this.parameters = params;
         if (params != null) {
             this.x = Integer.parseInt((String) params.get("x"));
         } else {
@@ -36,4 +38,7 @@ public class BinningStrategy implements MaskingStrategy {
             row.setValue(maskedValue);
         });
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

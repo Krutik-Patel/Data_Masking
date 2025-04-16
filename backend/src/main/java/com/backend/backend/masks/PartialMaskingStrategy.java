@@ -6,8 +6,10 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class PartialMaskingStrategy implements MaskingStrategy {
     private int x;
+    private Map<String, Object> parameters;
 
     public PartialMaskingStrategy(Map<String, Object> params) {
+        this.parameters = params;
         if (params != null) {
             String x_str = (String) params.get("x");
             this.x = Integer.parseInt(x_str);
@@ -34,4 +36,7 @@ public class PartialMaskingStrategy implements MaskingStrategy {
             return "X".repeat(x) + value.substring(x); // Mask first x characters
         }
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

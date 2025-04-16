@@ -8,11 +8,13 @@ public class LDiversityMaskingStrategy implements MaskingStrategy {
     private int l;
     private List<String> quasiIdentifiers;
     private String sensitiveAttributeXpath;
+    private Map<String, Object> parameters;
 
     public LDiversityMaskingStrategy(Map<String, Object> params) {
+        this.parameters = params;
         this.l = Integer.parseInt((String) params.get("l"));
         this.quasiIdentifiers = (List<String>) params.get("quasi_identifiers");
-        this.sensitiveAttributeXpath = "/company/departments/department/employees/employee/disease";
+        this.sensitiveAttributeXpath = ((List<String>) params.get("sensitive_identifiers")).get(0);
     }
 
     @Override
@@ -53,4 +55,7 @@ public class LDiversityMaskingStrategy implements MaskingStrategy {
             }
         }
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

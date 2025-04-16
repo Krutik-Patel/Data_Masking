@@ -48,14 +48,14 @@ public class LDiversityMaskingStrategyTest {
         strategy.mask(dataSlices);
 
         // Output the masked results
-        DataWriter dataWriter = new DataWriter();
-        for (UnifiedHeirarchicalObject slice : dataSlices) {
-            try {
-                String output = dataWriter.writeToString(slice, DataFormat.XML);
-                System.out.println(output);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        // DataWriter dataWriter = new DataWriter();
+        // for (UnifiedHeirarchicalObject slice : dataSlices) {
+        //     try {
+        //         String output = dataWriter.writeToString(slice, DataFormat.XML);
+        //         System.out.println(output);
+        //     } catch (Exception e) {
+        //         e.printStackTrace();
+        //     }
+        // }
     }
 }
