@@ -29,6 +29,7 @@ public class KAnonymizationMaskingStrategy implements MaskingStrategy {
                 values.add(childNode != null ? childNode.getValue() : null);
             }
             String key = String.join("|", values);
+            System.out.println("Key: " + key);
             groups.computeIfAbsent(key, keyVal -> new ArrayList<>()).add(obj);
         }
 
