@@ -16,7 +16,7 @@ public class PartialMaskingStrategyTest {
     public void testPartialMaskingStrategy() {
         // Test 1: x = 4
         Map<String, Object> params = new HashMap<>();
-        params.put("x", 4);
+        params.put("x", "4");
         MaskingStrategy partialMask = new PartialMaskingStrategy(params);
         List<UnifiedHeirarchicalObject> oList = new ArrayList<>();
         oList.add(new UnifiedHeirarchicalObject("key1", "123456789"));
@@ -30,7 +30,7 @@ public class PartialMaskingStrategyTest {
         assertEquals("XXXXo world", oList.get(2).getValue());
 
         // Test 2: x = 9 (equal to string length)
-        params.put("x", 9);
+        params.put("x", "9");
         partialMask = new PartialMaskingStrategy(params);
         oList.clear();
         oList.add(new UnifiedHeirarchicalObject("key1", "123456789"));
@@ -42,7 +42,7 @@ public class PartialMaskingStrategyTest {
         assertEquals("XXXXX", oList.get(1).getValue());
 
         // Test 3: x = 0 (no masking)
-        params.put("x", 0);
+        params.put("x", "0");
         partialMask = new PartialMaskingStrategy(params);
         oList.clear();
         oList.add(new UnifiedHeirarchicalObject("key1", "123456789"));

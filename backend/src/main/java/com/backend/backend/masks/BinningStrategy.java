@@ -40,5 +40,7 @@ public class BinningStrategy implements MaskingStrategy {
     }
 
     @Override
-    public Map<String, Object> getParameters() { return this.parameters; }
+    public Map<String, Object> getParameters() {
+        return this.parameters;
+    }
 }

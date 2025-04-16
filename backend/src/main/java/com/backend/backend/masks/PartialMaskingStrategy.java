@@ -14,7 +14,7 @@ public class PartialMaskingStrategy implements MaskingStrategy {
             String x_str = (String) params.get("x");
             this.x = Integer.parseInt(x_str);
         } else {
-            this.x = 1; // Default value if params is null
+            this.x = 4; // Default value if params is null
         }
     }
 

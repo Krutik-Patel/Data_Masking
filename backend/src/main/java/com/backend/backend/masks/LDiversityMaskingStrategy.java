@@ -14,7 +14,8 @@ public class LDiversityMaskingStrategy implements MaskingStrategy {
         this.parameters = params;
         this.l = Integer.parseInt((String) params.get("l"));
         this.quasiIdentifiers = (List<String>) params.get("quasi_identifiers");
-        this.sensitiveAttributeXpath = ((List<String>) params.get("sensitive_identifiers")).get(0);
+        List<String> sensitiveXpaths = (List<String>) params.get("sensitive_identifiers");
+        this.sensitiveAttributeXpath = sensitiveXpaths.get(0);
     }
 
     @Override
@@ -57,5 +58,7 @@ public class LDiversityMaskingStrategy implements MaskingStrategy {
     }
 
     @Override
-    public Map<String, Object> getParameters() { return this.parameters; }
+    public Map<String, Object> getParameters() {
+        return this.parameters;
+    }
 }

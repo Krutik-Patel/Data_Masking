@@ -41,7 +41,7 @@ public class LDiversityMaskingStrategyTest {
         Map<String, Object> params = new HashMap<>();
         params.put("l", "4");
         params.put("quasi_identifiers", Arrays.asList("/data/age", "/data/zip")); // Required
-        params.put("sensitive_attribute", "/data/disease"); // Required
+        params.put("sensitive_identifiers", Arrays.asList("/data/disease")); // Required
 
         // Apply l-diversity
         LDiversityMaskingStrategy strategy = new LDiversityMaskingStrategy(params);
@@ -50,12 +50,12 @@ public class LDiversityMaskingStrategyTest {
         // Output the masked results
         // DataWriter dataWriter = new DataWriter();
         // for (UnifiedHeirarchicalObject slice : dataSlices) {
-        //     try {
-        //         String output = dataWriter.writeToString(slice, DataFormat.XML);
-        //         System.out.println(output);
-        //     } catch (Exception e) {
-        //         e.printStackTrace();
-        //     }
+        // try {
+        // String output = dataWriter.writeToString(slice, DataFormat.XML);
+        // System.out.println(output);
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
         // }
     }
 }
