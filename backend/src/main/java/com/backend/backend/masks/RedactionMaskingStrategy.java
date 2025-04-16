@@ -6,8 +6,9 @@ import java.util.Map;
 import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class RedactionMaskingStrategy implements MaskingStrategy {
+    private Map<String, Object> parameters;
     public RedactionMaskingStrategy(Map<String, Object> params) {
-
+        this.parameters = params;
     } 
 
     public void mask(List<UnifiedHeirarchicalObject> dataSlices) {
@@ -19,4 +20,7 @@ public class RedactionMaskingStrategy implements MaskingStrategy {
     private String maskValue(String value) {
         return "REDACTED";
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

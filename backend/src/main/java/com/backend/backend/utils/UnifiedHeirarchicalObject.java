@@ -10,13 +10,14 @@ public class UnifiedHeirarchicalObject {
     private String value;
     private String xPath;
     private List<UnifiedHeirarchicalObject> children;
-    private Map<String, UnifiedHeirarchicalObject> nodeByXpath;
+    private Map<String, UnifiedHeirarchicalObject> nodeByXpath, nodeByName;
 
     public UnifiedHeirarchicalObject(String key, String value) {
         this.key = key;
         this.value = value;
         this.children = new ArrayList<UnifiedHeirarchicalObject>();
         this.nodeByXpath = new HashMap<>();
+        this.nodeByName = new HashMap<>();
     }
     
     public UnifiedHeirarchicalObject(String key, String value, String xPath) {
@@ -25,6 +26,7 @@ public class UnifiedHeirarchicalObject {
         this.xPath = xPath;
         this.children = new ArrayList<UnifiedHeirarchicalObject>();
         this.nodeByXpath = new HashMap<>();
+        this.nodeByName = new HashMap<>();
     }
 
     public String getKey() { return this.key; }
@@ -35,12 +37,14 @@ public class UnifiedHeirarchicalObject {
     public boolean hasChildren() { return children.size() > 0; }
     public List<UnifiedHeirarchicalObject> getChildren() { return this.children; }
     public UnifiedHeirarchicalObject getChildByXpath(String xpath) { return this.nodeByXpath.get(xpath); } 
+    public UnifiedHeirarchicalObject getChildByName(String name) { return this.nodeByName.get(name); }
     public UnifiedHeirarchicalObject getNthChild(int index) { return this.children.get(index); }
     public void addChild(UnifiedHeirarchicalObject child) throws Exception { 
         if (child.getXpath() == null) {
-            throw new Exception("XPath not initialized...");
+            throw new Exception("XPath not initialized... Please assign xPath to this node.");
         }
         this.nodeByXpath.put(child.getXpath(), child);
+        this.nodeByName.put(child.getKey(), child);
         this.children.add(child); 
     }
 }

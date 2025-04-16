@@ -1,0 +1,181 @@
+<fields_info>
+
+    <!-- Binning strategy -->
+    <field>
+        <field_name>experience</field_name>
+        <field_xPath>/company/departments/department/employees/employee/experience</field_xPath>
+        <dataType>integer</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>BINNNG</method_name>
+            <method_parameters>
+                <x>10</x>
+        </method_parameters>
+    </field>
+
+    <!-- NOISE INJECTION strategy -->
+    <field>
+        <field_name>city</field_name>
+        <field_xPath>/company/departments/department/employees/employee/city</field_xPath>
+        <dataType>string</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>NOISE_INJECTION</method_name>
+            <method_parameters>
+        </method_parameters>
+    </field>
+
+    <!-- PARTIAL MASKING strategy -->
+    <field>
+        <field_name>phoneNumber</field_name>
+        <field_xPath>/company/departments/department/employees/employee/phoneNumber</field_xPath>
+        <dataType>string</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>PARTIAL_MASKING</method_name>
+            <method_parameters>
+                <x>5</x>
+        </method_parameters>
+    </field>
+
+    <!-- SUBSTITUTION strategy -->
+    <field>
+        <field_name>debitCardNo</field_name>
+        <field_xPath>/company/departments/department/employees/employee/debitCardNo</field_xPath>
+        <dataType>string</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>SUBSTITUTION</method_name>
+            <method_parameters>
+        </method_parameters>
+    </field>
+
+    <!-- Hashing strategy -->
+    <field>
+        <field_name>emp_id</field_name>
+        <field_xPath>/company/departments/department/employees/employee/emp_id</field_xPath>
+        <dataType>integer</dataType>
+        <isPrimaryKey>true</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>HASH</method_name>
+            <method_parameters>
+                <algorithm>SHA256</algorithm>
+            </method_parameters>
+        </morphing_method>
+    </field>
+
+    <!-- Substitution strategy -->
+    <field>
+        <field_name>ssn</field_name>
+        <field_xPath>/company/departments/department/employees/employee/ssn</field_xPath>
+        <dataType>string</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>SUBSTITUTION</method_name>
+            <method_parameters>
+            </method_parameters>
+        </morphing_method>
+    </field>
+
+    <!-- Redaction strategy -->
+    <field>
+        <field_name>name</field_name>
+        <field_xPath>/company/departments/department/employees/employee/name</field_xPath>
+        <dataType>string</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>HASH</method_name>
+            <method_parameters>
+                <algorithm>SHA256</algorithm>
+            </method_parameters>
+        </morphing_method>
+    </field>
+
+    <!-- Email strategy -->
+    <field>
+        <field_name>email</field_name>
+        <field_xPath>/company/departments/department/employees/employee/email</field_xPath>
+        <dataType>string</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>EMAIL</method_name>
+            <method_parameters>
+            </method_parameters>
+        </morphing_method>
+    </field>
+
+    <!-- Range shift strategy -->
+    <field>
+        <field_name>salary</field_name>
+        <field_xPath>/company/departments/department/employees/employee/salary</field_xPath>
+        <dataType>integer</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>RANGESHIFT</method_name>
+            <method_parameters>
+            </method_parameters>
+        </morphing_method>
+    </field>
+
+    <!-- Redact strategy -->
+    <field>
+        <field_name>proj_name</field_name>
+        <field_xPath>/company/departments/department/employees/employee/projects/project/proj_name</field_xPath>
+        <dataType>string</dataType>
+        <isPrimaryKey>true</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>REDACT</method_name>
+            <method_parameters>
+            </method_parameters>
+        </morphing_method>
+    </field>
+
+    <!-- HASH strategy -->
+    <field>
+        <field_name>assigned_date</field_name>
+        <field_xPath>/company/departments/department/employees/employee/projects/project/assigned_date</field_xPath>
+        <dataType>date</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>HASH</method_name>
+            <method_parameters>
+                <algorithm>SHA256</algorithm>
+            </method_parameters>
+        </morphing_method>
+    </field>
+
+    <!-- K-anonymization strategy -->
+    <full_data>
+        <algorithm>KANONYMIZATION</algorithm>
+        <quasi_identifiers>
+            <identifier_xpath>/company/departments/department/employees/employee/gender</identifier_xpath>
+            <identifier_xpath>/company/departments/department/employees/employee/age</identifier_xpath>
+            <identifier_xpath>/company/departments/department/employees/employee/zip</identifier_xpath>
+        </quasi_identifiers>
+        <parameters>
+            <k>3</k>
+        </parameters>
+    </full_data>
+    <full_data>
+        <algorithm>LDIVERSITY</algorithm>
+        <quasi_identifiers>
+            <identifier_xpath>/company/departments/department/employees/employee/gender</identifier_xpath>
+            <identifier_xpath>/company/departments/department/employees/employee/age</identifier_xpath>
+            <identifier_xpath>/company/departments/department/employees/employee/zip</identifier_xpath>
+        </quasi_identifiers>
+        <sensitive_identifiers>
+            <identifier_xpath>/company/departments/department/employees/employee/disease</identifier_xpath>
+        <sensitive_identifiers>
+        
+</fields_info>

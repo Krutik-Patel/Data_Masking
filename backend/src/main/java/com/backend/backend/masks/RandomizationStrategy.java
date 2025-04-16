@@ -8,9 +8,11 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 public class RandomizationStrategy implements MaskingStrategy {
     private static final String ALPHANUMERIC_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private Random random;
+    private Map<String, Object> parameters;
 
     // Constructor: No parameters required
     public RandomizationStrategy(Map<String, Object> params) {
+        this.parameters = params;
         this.random = new Random();
     }
 
@@ -33,4 +35,7 @@ public class RandomizationStrategy implements MaskingStrategy {
         }
         return randomized.toString();
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

@@ -8,16 +8,20 @@ public class LDiversityMaskingStrategy implements MaskingStrategy {
     private int l;
     private List<String> quasiIdentifiers;
     private String sensitiveAttributeXpath;
+    private Map<String, Object> parameters;
 
     public LDiversityMaskingStrategy(Map<String, Object> params) {
-        this.l = Integer.parseInt(params.get("l").toString());
+        this.parameters = params;
+        this.l = Integer.parseInt((String) params.get("l"));
         this.quasiIdentifiers = (List<String>) params.get("quasi_identifiers");
-        this.sensitiveAttributeXpath = params.get("sensitive_attribute").toString();
+        List<String> sensitiveXpaths = (List<String>) params.get("sensitive_identifiers");
+        this.sensitiveAttributeXpath = sensitiveXpaths.get(0);
     }
 
     @Override
     public void mask(List<UnifiedHeirarchicalObject> dataSlices) {
-        if (dataSlices == null || dataSlices.isEmpty()) return;
+        if (dataSlices == null || dataSlices.isEmpty())
+            return;
 
         Map<String, List<UnifiedHeirarchicalObject>> groups = new HashMap<>();
 
@@ -51,5 +55,10 @@ public class LDiversityMaskingStrategy implements MaskingStrategy {
                 }
             }
         }
+    }
+
+    @Override
+    public Map<String, Object> getParameters() {
+        return this.parameters;
     }
 }

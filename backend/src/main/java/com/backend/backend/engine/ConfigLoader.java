@@ -18,6 +18,7 @@ public class ConfigLoader {
     Map<String, MaskingStrategy> maskStrategyMap;
     List<MaskingStrategy> fulldataMasksList;
     private UnifiedHeirarchicalObject configTree;
+
     public ConfigLoader() {
         this.maskStrategyMap = new HashMap<>();
         this.fulldataMasksList = new ArrayList<>();
@@ -41,9 +42,9 @@ public class ConfigLoader {
         // String fieldName = field.getNthChild(0).getValue();
         // String dataType = field.getNthChild(2).getValue();
 
-        String fieldXPath = field.getNthChild(1).getValue();
-        String maskingMethod = field.getNthChild(5).getNthChild(0).getValue();
-        List<UnifiedHeirarchicalObject> mask_params = field.getNthChild(5).getNthChild(1).getChildren();
+        String fieldXPath = field.getChildByName("field_xPath").getValue();
+        String maskingMethod = field.getChildByName("morphing_method").getChildByName("method_name").getValue();
+        List<UnifiedHeirarchicalObject> mask_params = field.getChildByName("morphing_method").getChildByName("method_parameters").getChildren();
         Map<String, Object> parameters = new HashMap<>();
         for (UnifiedHeirarchicalObject param: mask_params) {
             parameters.put(param.getKey(), param.getValue());
@@ -53,14 +54,17 @@ public class ConfigLoader {
     } 
 
     private void mapFullDataConfigMask(UnifiedHeirarchicalObject field) {
-        String algorithm = field.getNthChild(0).getValue();
-        List<String> quasiIDList = new ArrayList<>();
-        for (UnifiedHeirarchicalObject child: field.getNthChild(1).getChildren()) {
-            quasiIDList.add(child.getValue());
-        }
-        List<UnifiedHeirarchicalObject> mask_params = field.getNthChild(2).getChildren();
+        String algorithm = field.getChildByName("algorithm").getValue();
+        List<UnifiedHeirarchicalObject> identifiers = field.getChildByName("identifiers").getChildren();
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put(field.getNthChild(1).getKey(), quasiIDList);
+        identifiers.forEach((identifier) -> {
+            List<String> id_xpaths = new ArrayList<>();
+            for (UnifiedHeirarchicalObject child: identifier.getChildren()) {
+                id_xpaths.add(child.getValue());
+            }
+            parameters.put(identifier.getKey(), id_xpaths);
+        });
+        List<UnifiedHeirarchicalObject> mask_params = field.getChildByName("parameters").getChildren();
         for (UnifiedHeirarchicalObject param: mask_params) {
             parameters.put(param.getKey(), param.getValue());
         }

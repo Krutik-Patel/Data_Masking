@@ -6,8 +6,9 @@ import java.util.Map;
 import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class SubstitutionStrategy implements MaskingStrategy {
+    private Map<String, Object> parameters;
     public SubstitutionStrategy(Map<String, Object> params) {
-
+        this.parameters = params;
     }
 
     @Override
@@ -21,4 +22,7 @@ public class SubstitutionStrategy implements MaskingStrategy {
         String prefix = value.substring(0, value.length() - 4);
         return prefix + "XXXX";
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

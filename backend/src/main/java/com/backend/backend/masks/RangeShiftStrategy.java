@@ -6,8 +6,9 @@ import java.util.Map;
 import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class RangeShiftStrategy implements MaskingStrategy {
+    private Map<String, Object> parameters;
     public RangeShiftStrategy(Map<String, Object> params) {
-
+        this.parameters = params;
     }
 
     public void mask(List<UnifiedHeirarchicalObject> dataSlices) {
@@ -24,4 +25,7 @@ public class RangeShiftStrategy implements MaskingStrategy {
 
         return Double.toString(shiftedValue);
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

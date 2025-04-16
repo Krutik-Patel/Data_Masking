@@ -6,17 +6,15 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class PartialMaskingStrategy implements MaskingStrategy {
     private int x;
+    private Map<String, Object> parameters;
 
     public PartialMaskingStrategy(Map<String, Object> params) {
-        if (params != null && params.containsKey("x")) {
-            Object xObj = params.get("x");
-            if (xObj instanceof Integer) {
-                this.x = (Integer) xObj;
-            } else {
-                throw new IllegalArgumentException("Parameter 'x' must be an integer");
-            }
+        this.parameters = params;
+        if (params != null) {
+            String x_str = (String) params.get("x");
+            this.x = Integer.parseInt(x_str);
         } else {
-            this.x = 4; // Default value if params is null or "x" is missing
+            this.x = 4; // Default value if params is null
         }
     }
 
@@ -38,4 +36,7 @@ public class PartialMaskingStrategy implements MaskingStrategy {
             return "X".repeat(x) + value.substring(x); // Mask first x characters
         }
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

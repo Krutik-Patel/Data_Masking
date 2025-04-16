@@ -32,7 +32,7 @@ public class KAnonymizationMaskingStrategyTest {
         dataSlices.add(r3);
 
         UnifiedHeirarchicalObject r4 = new UnifiedHeirarchicalObject("package3", null);
-        r4.addChild(new UnifiedHeirarchicalObject("age", "40", "/data/age"));
+        r4.addChild(new UnifiedHeirarchicalObject("age", "25", "/data/age"));
         r4.addChild(new UnifiedHeirarchicalObject("zip", "12321", "/data/zip"));
         r4.addChild(new UnifiedHeirarchicalObject("gender", "F", "/data/gender"));
         dataSlices.add(r4);
@@ -40,21 +40,21 @@ public class KAnonymizationMaskingStrategyTest {
         // Configuration
         Map<String, Object> params = new HashMap<>();
         params.put("k", "2");
-        params.put("quasi_identifiers", Arrays.asList("/data/age", "/data/zip", "/data/gender")); // Required
+        params.put("quasi_identifiers", Arrays.asList("/data/age", "/data/zip")); // Required
 
         // Apply k-anonymity
         KAnonymizationMaskingStrategy strategy = new KAnonymizationMaskingStrategy(params);
         strategy.mask(dataSlices);
 
         // Output the masked results
-        DataWriter dataWriter = new DataWriter();
-        for (UnifiedHeirarchicalObject slice : dataSlices) {
-            try {
-                String output = dataWriter.writeToString(slice, DataFormat.XML);
-                System.out.println(output);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        // DataWriter dataWriter = new DataWriter();
+        // for (UnifiedHeirarchicalObject slice : dataSlices) {
+        //     try {
+        //         String output = dataWriter.writeToString(slice, DataFormat.XML);
+        //         System.out.println(output);
+        //     } catch (Exception e) {
+        //         e.printStackTrace();
+        //     }
+        // }
     }
 }

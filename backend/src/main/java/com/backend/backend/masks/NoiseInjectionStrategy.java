@@ -8,6 +8,7 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 public class NoiseInjectionStrategy implements MaskingStrategy {
 
     private static final Map<Character, Character> replacementMap = new HashMap<>();
+    private Map<String, Object> parameters;
 
     static {
         String charsToReplace = "oeaisOEAIS";
@@ -19,7 +20,7 @@ public class NoiseInjectionStrategy implements MaskingStrategy {
     }
 
     public NoiseInjectionStrategy(Map<String, Object> params) {
-        // No initialization required
+        this.parameters = params;
     }
 
     @Override
@@ -40,4 +41,7 @@ public class NoiseInjectionStrategy implements MaskingStrategy {
 
         return masked.toString();
     }
+
+    @Override
+    public Map<String, Object> getParameters() { return this.parameters; }
 }

@@ -50,7 +50,7 @@ public class BinningStrategyTest {
     public void testBinningStrategyCustomX() {
         // Test with custom x=2, bin size = 10^2 = 100
         Map<String, Object> params = new HashMap<>();
-        params.put("x", 2);
+        params.put("x", "2");
         MaskingStrategy binningMask = new BinningStrategy(params);
         List<UnifiedHeirarchicalObject> o_list = new ArrayList<>();
         o_list.add(new UnifiedHeirarchicalObject("key1", "567"));

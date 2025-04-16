@@ -91,4 +91,21 @@ public class XMLLoaderTest {
         assertEquals(root.getChildByXpath("/root/child1").getChildByXpath("/root/child1/innerchild").getValue(), "value1");
 
     }
+
+    @Test
+    public void testParseFile_getChildByName() throws Exception {
+        String xmlContent = "<root>"
+        + "  <child>value</child>"
+        + "  <child1><innerchild>value1</innerchild></child1>"
+        + "</root>";
+        MockMultipartFile file = new MockMultipartFile("file", "test.xml", "text/xml", xmlContent.getBytes());
+        XMLLoader loader = new XMLLoader();
+
+        UnifiedHeirarchicalObject root = loader.parseFile(file);    
+
+        assertEquals(root.getChildByName("child1").getKey(), "child1");
+        assertEquals(root.getChildByName("child").getValue(), "value");
+        assertEquals(root.getChildByName("child1").getChildByName("innerchild").getValue(), "value1");
+
+    }
 }
