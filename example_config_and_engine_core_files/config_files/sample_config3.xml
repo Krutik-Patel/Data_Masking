@@ -1,5 +1,4 @@
 <fields_info>
-
     <field>
         <field_name>experience</field_name>
         <field_xPath>/company/departments/department/employees/employee/experience</field_xPath>
@@ -13,7 +12,6 @@
             </method_parameters>
         </morphing_method>
     </field>
-
    <field>
         <field_name>city</field_name>
         <field_xPath>/company/departments/department/employees/employee/city</field_xPath>
@@ -26,7 +24,6 @@
             </method_parameters>
         </morphing_method>
     </field>
-
     <field>
         <field_name>phoneNumber</field_name>
         <field_xPath>/company/departments/department/employees/employee/phoneNumber</field_xPath>
@@ -40,7 +37,6 @@
             </method_parameters>
         </morphing_method>
     </field>
-
     <field>
         <field_name>debitCardNo</field_name>
         <field_xPath>/company/departments/department/employees/employee/debitCardNo</field_xPath>
@@ -52,7 +48,6 @@
             <method_parameters></method_parameters>
         </morphing_method>
     </field>
-
     <field>
         <field_name>emp_id</field_name>
         <field_xPath>/company/departments/department/employees/employee/emp_id</field_xPath>
@@ -66,7 +61,6 @@
             </method_parameters>
         </morphing_method>
     </field>
-
     <field>
         <field_name>ssn</field_name>
         <field_xPath>/company/departments/department/employees/employee/ssn</field_xPath>
@@ -79,7 +73,6 @@
             </method_parameters>
         </morphing_method>
     </field>
-
     <field>
         <field_name>name</field_name>
         <field_xPath>/company/departments/department/employees/employee/name</field_xPath>
@@ -93,7 +86,6 @@
             </method_parameters>
         </morphing_method>
     </field>
-
     <field>
         <field_name>email</field_name>
         <field_xPath>/company/departments/department/employees/employee/email</field_xPath>
@@ -106,7 +98,6 @@
             </method_parameters>
         </morphing_method>
     </field>
-
     <field>
         <field_name>salary</field_name>
         <field_xPath>/company/departments/department/employees/employee/salary</field_xPath>
@@ -119,7 +110,6 @@
             </method_parameters>
         </morphing_method>
     </field>
-
     <field>
         <field_name>proj_name</field_name>
         <field_xPath>/company/departments/department/employees/employee/projects/project/proj_name</field_xPath>
@@ -132,7 +122,6 @@
             </method_parameters>
         </morphing_method>
     </field>
-
     <field>
         <field_name>assigned_date</field_name>
         <field_xPath>/company/departments/department/employees/employee/projects/project/assigned_date</field_xPath>
@@ -146,14 +135,15 @@
             </method_parameters>
         </morphing_method>
     </field>
-
     <full_data>
         <algorithm>KANONYMIZATION</algorithm>
-        <quasi_identifiers>
-                <identifier_xpath>/company/departments/department/employees/employee/gender</identifier_xpath>
-                <identifier_xpath>/company/departments/department/employees/employee/age</identifier_xpath>
-                <identifier_xpath>/company/departments/department/employees/employee/zip</identifier_xpath>
-        </quasi_identifiers>
+        <identifiers>
+            <quasi_identifiers>
+                    <identifier_xpath>/company/departments/department/employees/employee/gender</identifier_xpath>
+                    <identifier_xpath>/company/departments/department/employees/employee/age</identifier_xpath>
+                    <identifier_xpath>/company/departments/department/employees/employee/zip</identifier_xpath>
+            </quasi_identifiers>
+        </identifiers>
         <parameters>
             <k>3</k>
         </parameters>
