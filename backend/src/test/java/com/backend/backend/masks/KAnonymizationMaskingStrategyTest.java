@@ -1,16 +1,17 @@
 package com.backend.backend.masks;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.*;
 import org.junit.jupiter.api.Test;
 
 import com.backend.backend.utils.UnifiedHeirarchicalObject;
-import com.backend.backend.utils.writer.DataWriter;
-import com.backend.backend.utils.writer.DataWriter.DataFormat;
 
 public class KAnonymizationMaskingStrategyTest {
 
     @Test
     public void testKAnonymizationMaskStrategy() throws Exception {
+        // Build 4 records
         List<UnifiedHeirarchicalObject> dataSlices = new ArrayList<>();
 
         UnifiedHeirarchicalObject r1 = new UnifiedHeirarchicalObject("package", null);
@@ -37,24 +38,39 @@ public class KAnonymizationMaskingStrategyTest {
         r4.addChild(new UnifiedHeirarchicalObject("gender", "F", "/data/gender"));
         dataSlices.add(r4);
 
-        // Configuration
+        // Configuration: k = 2, quasi-identifiers = [age, zip]
         Map<String, Object> params = new HashMap<>();
         params.put("k", "2");
-        params.put("quasi_identifiers", Arrays.asList("/data/age", "/data/zip")); // Required
+        params.put("quasi_identifiers", Arrays.asList("/data/age", "/data/zip"));
+        KAnonymizationMaskingStrategy strategy = new KAnonymizationMaskingStrategy(params);
 
         // Apply k-anonymity
-        KAnonymizationMaskingStrategy strategy = new KAnonymizationMaskingStrategy(params);
         strategy.mask(dataSlices);
 
-        // Output the masked results
-        // DataWriter dataWriter = new DataWriter();
-        // for (UnifiedHeirarchicalObject slice : dataSlices) {
-        //     try {
-        //         String output = dataWriter.writeToString(slice, DataFormat.XML);
-        //         System.out.println(output);
-        //     } catch (Exception e) {
-        //         e.printStackTrace();
-        //     }
-        // }
+        // Expected [age, zip, gender] for each record after masking:
+        //  r1, r2 are in a group of size=2 → kept
+        //  r3, r4 are in groups of size=1 → age & zip masked, gender untouched
+        List<String[]> expected = List.of(
+            new String[]{"25",   "12345", "M"},
+            new String[]{"25",   "12345", "M"},
+            new String[]{"*",    "*",     "F"},
+            new String[]{"*",    "*",     "F"}
+        );
+
+        for (int i = 0; i < dataSlices.size(); i++) {
+            UnifiedHeirarchicalObject rec = dataSlices.get(i);
+            assertEquals(expected.get(i)[0],
+                         rec.getChildByXpath("/data/age").getValue(),
+                         "age mismatch at record " + (i+1));
+            assertEquals(expected.get(i)[1],
+                         rec.getChildByXpath("/data/zip").getValue(),
+                         "zip mismatch at record " + (i+1));
+            assertEquals(expected.get(i)[2],
+                         rec.getChildByXpath("/data/gender").getValue(),
+                         "gender should remain unchanged at record " + (i+1));
+        }
+
+        // Verify that the parameter 'k' remains set to "2"
+        assertEquals("2", params.get("k"));
     }
 }

@@ -22,7 +22,6 @@ public class KAnonymizationMaskingStrategy implements MaskingStrategy {
 
         // Group objects by quasi-identifier values extracted via XPaths
         Map<String, List<UnifiedHeirarchicalObject>> groups = new HashMap<>();
-
         for (UnifiedHeirarchicalObject obj : dataSlices) {
             // Build a key by collecting values for all provided XPaths
             List<String> values = new ArrayList<>();
@@ -33,9 +32,9 @@ public class KAnonymizationMaskingStrategy implements MaskingStrategy {
             }
             String key = String.join("|", values);
             System.out.println("Key: " + key);
+            System.out.println("C:"+c);
             groups.computeIfAbsent(key, keyVal -> new ArrayList<>()).add(obj);
         }
-
         // Mask values if the group size is smaller than k
         for (Map.Entry<String, List<UnifiedHeirarchicalObject>> entry : groups.entrySet()) {
             if (entry.getValue().size() < k) {

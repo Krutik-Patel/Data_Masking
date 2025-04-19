@@ -17,7 +17,7 @@ public class BinningStrategy implements MaskingStrategy {
         } else {
             this.x = 1; // Default value if params is null
         }
-        // this.x = 1;
+        
     }
 
     // Mask method: Replace each numerical value with its bin range
@@ -43,4 +43,5 @@ public class BinningStrategy implements MaskingStrategy {
     public Map<String, Object> getParameters() {
         return this.parameters;
     }
+
 }

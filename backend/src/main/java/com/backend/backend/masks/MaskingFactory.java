@@ -16,7 +16,7 @@ public class MaskingFactory {
             case "BINNING": return new BinningStrategy(parameters);
             case "NOISE_INJECTION": return new NoiseInjectionStrategy(parameters);
             case "LDIVERSITY": return new LDiversityMaskingStrategy(parameters);
-            
+            case "NONE": return new NoMaskingStrategy(parameters);
             default:
                 throw new IllegalArgumentException("Unsupported masking method: " + maskingMethod);
         }

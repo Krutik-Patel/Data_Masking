@@ -1,5 +1,4 @@
 <fields_info>
-
     <field>
         <field_name>experience</field_name>
         <field_xPath>/company/departments/department/employees/employee/experience</field_xPath>
