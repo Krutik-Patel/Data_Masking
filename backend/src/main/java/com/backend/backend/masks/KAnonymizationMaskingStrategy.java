@@ -32,7 +32,6 @@ public class KAnonymizationMaskingStrategy implements MaskingStrategy {
             }
             String key = String.join("|", values);
             System.out.println("Key: " + key);
-            System.out.println("C:"+c);
             groups.computeIfAbsent(key, keyVal -> new ArrayList<>()).add(obj);
         }
         // Mask values if the group size is smaller than k

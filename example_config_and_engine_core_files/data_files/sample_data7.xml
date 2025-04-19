@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company>
+  <departments>
+    <department>
+      <employees>
+
+        <employee>
+          <age>28</age>
+          <zip>560001</zip>
+          <gender>F</gender>
+          <disease>diabetes</disease>
+        </employee>
+
+        <employee>
+          <age>28</age>
+          <zip>560001</zip>
+          <gender>F</gender>
+          <disease>hypertension</disease>
+        </employee>
+
+        <employee>
+          <age>35</age>
+          <zip>560002</zip>
+          <gender>M</gender>
+          <disease>diabetes</disease>
+        </employee>
+
+        <employee>
+          <age>42</age>
+          <zip>560003</zip>
+          <gender>M</gender>
+          <disease>asthma</disease>
+        </employee>
+
+      </employees>
+    </department>
+  </departments>
+</company>
