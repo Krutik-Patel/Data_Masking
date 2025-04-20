@@ -15,18 +15,18 @@
 
 ### Supporting Structures Added
 
-#### 1. `foreignKeyMap`
+#### 1. `foreignKeyMap` - Creaetd and Populated in ConfigLoader.java
 - **Type**: `Map<String, List<String>>`
 - Stores a list of foreign key XPaths for each primary key XPath.
 - Enables recursive masking of dependent fields.
 
-#### 2. `xPathValueToDataMap`
+#### 2. `xPathValueToDataMap` - Created and Populated the first in DataLoader.java
 - **Type**: `Map<String, Map<String, List<UnifiedHeirarchicalObject>>>`
 - Used to locate data nodes by both XPath and their value.
 - Crucial for identifying which fields to mask.
 - After masking, this map needs to be updated using the transformation log to reflect the new values.
 
-#### 3. `valueTransformationLog`
+#### 3. `valueTransformationLog`  - Created and Maintained in ReferentialMaskingExecutor.java
 - **Type**: `Map<String, String>`
 - Keeps track of how original values are transformed during masking.
 - Used to propagate changes across foreign key dependencies.
