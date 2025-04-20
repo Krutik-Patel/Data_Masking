@@ -51,7 +51,7 @@ public class ReferentialMaskingExecutor {
         }
     }
 
-    private void applyValueTransformationLog(
+    public void applyValueTransformationLog(
             String xPath,
             Map<String, String> valueTransformationLog,
             Map<String, Map<String, List<UnifiedHeirarchicalObject>>> xPathValueToDataMap,
