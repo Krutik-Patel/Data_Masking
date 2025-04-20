@@ -2,10 +2,7 @@
 
 The current implementation is based on the following assumptions:
 
-1. **A field will never be requested to be masked more than once.**  
-   - This simplifies value tracking and avoids complications in transformation logs or duplicate processing.
-
-2. **There are no loops in the foreign key dependency graph.**  
+1. **There are no loops in the foreign key dependency graph.**  
    - The masking logic performs a DFS traversal for referential integrity.  
    - Cycles in the graph could lead to infinite recursion, which is not currently handled.
 
