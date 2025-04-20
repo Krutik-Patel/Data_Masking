@@ -28,7 +28,8 @@ public class Engine {
 
     public String maskData() {
         try {
-            this.morpher.executeOperations(this.configLoader, this.dataFileLoader);
+            // this.morpher.executeOperations(this.configLoader, this.dataFileLoader);
+            this.morpher.executeWaterFallOperations(configLoader, dataFileLoader);
             String outputData = this.dataFileLoader.stringifyData();
             return outputData;
         } catch (Exception e) {

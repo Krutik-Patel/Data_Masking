@@ -62,7 +62,7 @@ public class BackendApplication {
 
 			// Perform masking
 			if (!engine.isReadyForMasking()) {
-				System.out.println("❌ Masking failed: Please check if both files are valid.");
+				System.out.println("Masking failed: Please check if both files are valid.");
 				return;
 			}
 

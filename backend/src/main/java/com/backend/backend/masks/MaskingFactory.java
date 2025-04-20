@@ -15,6 +15,7 @@ public class MaskingFactory {
             case "RANDOMIZATION": return new RandomizationStrategy(parameters);
             case "BINNING": return new BinningStrategy(parameters);
             case "NOISE_INJECTION": return new NoiseInjectionStrategy(parameters);
+            case "NOTHING": return new NothingStrategy(parameters);
             case "LDIVERSITY": return new LDiversityMaskingStrategy(parameters);
             
             default:
