@@ -1,0 +1,40 @@
+{
+    "fields_info": {
+      "full_data": [
+        {
+          "algorithm": "KANONYMIZATION",
+          "quasi_identifiers": {
+            "identifier_xpath": [
+              "/company/departments/department/employees/employee/gender",
+              "/company/departments/department/employees/employee/age",
+              "/company/departments/department/employees/employee/zip"
+            ]
+          },
+          "parameters": {
+            "k": 3
+          }
+        },
+        {
+          "algorithm": "LDIVERSITY",
+          "identifiers": {
+            "quasi_identifiers": {
+              "identifier_xpath": [
+                "/company/departments/department/employees/employee/gender",
+                "/company/departments/department/employees/employee/age",
+                "/company/departments/department/employees/employee/zip"
+              ]
+            },
+            "sensitive_identifiers": {
+              "identifier_xpath": [
+                "/company/departments/department/employees/employee/disease"
+              ]
+            }
+          },
+          "parameters": {
+            "l": 2
+          }
+        }
+      ]
+    }
+  }
+  
