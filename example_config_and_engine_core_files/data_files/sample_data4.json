@@ -1,0 +1,292 @@
+{
+    "company": {
+      "departments": {
+        "department": [
+          {
+            "dept_id": "101",
+            "dept_name": "Engineering",
+            "employees": {
+              "employee": [
+                {
+                  "emp_id": "1002",
+                  "name": "Brian Smith",
+                  "age": "40",
+                  "gender": "M",
+                  "zip": "234567",
+                  "ssn": "234-56-7890",
+                  "salary": "91000",
+                  "experience": "12",
+                  "city": "Chicago",
+                  "phoneNumber": "9812345670",
+                  "debitCardNo": "4532789012345678",
+                  "email": "brian.smith@company.com",
+                  "disease": "diabetes",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ002",
+                      "proj_name": "Neural NetX",
+                      "assigned_date": "2023-03-10"
+                    }
+                  }
+                },
+                {
+                  "emp_id": "1003",
+                  "name": "Clara Fernandes",
+                  "age": "30",
+                  "gender": "F",
+                  "zip": "345678",
+                  "ssn": "345-67-8901",
+                  "salary": "72000",
+                  "experience": "3",
+                  "city": "Boston",
+                  "phoneNumber": "9876543201",
+                  "debitCardNo": "4916123498761234",
+                  "email": "clara.fernandes@company.com",
+                  "disease": "cancer",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ003",
+                      "proj_name": "Vision Scope",
+                      "assigned_date": "2024-01-05"
+                    }
+                  }
+                },
+                {
+                  "emp_id": "1004",
+                  "name": "David Liu",
+                  "age": "30",
+                  "gender": "M",
+                  "zip": "456789",
+                  "ssn": "456-78-9012",
+                  "salary": "88000",
+                  "experience": "9",
+                  "city": "San Francisco",
+                  "phoneNumber": "9123456709",
+                  "debitCardNo": "5243123412345678",
+                  "email": "david.liu@company.com",
+                  "disease": "thyroid",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ004",
+                      "proj_name": "Quantum Leap",
+                      "assigned_date": "2022-10-20"
+                    }
+                  }
+                },
+                {
+                  "emp_id": "1005",
+                  "name": "Eva Green",
+                  "age": "40",
+                  "gender": "F",
+                  "zip": "567890",
+                  "ssn": "567-89-0123",
+                  "salary": "77000",
+                  "experience": "6",
+                  "city": "Seattle",
+                  "phoneNumber": "9001234561",
+                  "debitCardNo": "6011123412341234",
+                  "email": "eva.green@company.com",
+                  "disease": "cancer",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ005",
+                      "proj_name": "DeepMind Sync",
+                      "assigned_date": "2023-11-10"
+                    }
+                  }
+                },
+                {
+                  "emp_id": "1006",
+                  "name": "Faizan Khan",
+                  "age": "30",
+                  "gender": "M",
+                  "zip": "678901",
+                  "ssn": "678-90-1234",
+                  "salary": "68000",
+                  "experience": "2",
+                  "city": "Delhi",
+                  "phoneNumber": "9112345678",
+                  "debitCardNo": "3567123412340000",
+                  "email": "faizan.khan@company.com",
+                  "disease": "heart",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ006",
+                      "proj_name": "NLP Boost",
+                      "assigned_date": "2024-02-12"
+                    }
+                  }
+                },
+                {
+                  "emp_id": "1007",
+                  "name": "Grace Thomas",
+                  "age": "40",
+                  "gender": "F",
+                  "zip": "789012",
+                  "ssn": "789-01-2345",
+                  "salary": "94000",
+                  "experience": "18",
+                  "city": "Mumbai",
+                  "phoneNumber": "9988776655",
+                  "debitCardNo": "4539987612344321",
+                  "email": "grace.thomas@company.com",
+                  "disease": "cancer",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ007",
+                      "proj_name": "SecureAuth",
+                      "assigned_date": "2021-09-01"
+                    }
+                  }
+                },
+                {
+                  "emp_id": "1008",
+                  "name": "Harsh Patel",
+                  "age": "30",
+                  "gender": "M",
+                  "zip": "890123",
+                  "ssn": "890-12-3456",
+                  "salary": "81000",
+                  "experience": "7",
+                  "city": "Ahmedabad",
+                  "phoneNumber": "9812341298",
+                  "debitCardNo": "6011987654321234",
+                  "email": "harsh.patel@company.com",
+                  "disease": "heart",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ008",
+                      "proj_name": "GenAI Builder",
+                      "assigned_date": "2023-05-08"
+                    }
+                  }
+                },
+                {
+                  "emp_id": "1009",
+                  "name": "Isha Reddy",
+                  "age": "29",
+                  "gender": "F",
+                  "zip": "901234",
+                  "ssn": "901-23-4567",
+                  "salary": "69000",
+                  "experience": "4",
+                  "city": "Bangalore",
+                  "phoneNumber": "9922334455",
+                  "debitCardNo": "4532123412347777",
+                  "email": "isha.reddy@company.com",
+                  "disease": "cancer",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ009",
+                      "proj_name": "SmartGrid AI",
+                      "assigned_date": "2024-03-19"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "dept_id": "102",
+            "dept_name": "Marketing",
+            "employees": {
+              "employee": [
+                {
+                  "emp_id": "1010",
+                  "name": "Junaid Alam",
+                  "age": "37",
+                  "gender": "M",
+                  "zip": "912345",
+                  "ssn": "912-34-5678",
+                  "salary": "87000",
+                  "experience": "10",
+                  "city": "Hyderabad",
+                  "phoneNumber": "9876512345",
+                  "debitCardNo": "6011567890123456",
+                  "email": "junaid.alam@company.com",
+                  "disease": "none",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ010",
+                      "proj_name": "EdgeCompute",
+                      "assigned_date": "2022-08-14"
+                    }
+                  }
+                },
+                {
+                  "emp_id": "1011",
+                  "name": "Keerthi Menon",
+                  "age": "32",
+                  "gender": "F",
+                  "zip": "923456",
+                  "ssn": "923-45-6789",
+                  "salary": "76000",
+                  "experience": "6",
+                  "city": "Kochi",
+                  "phoneNumber": "9012348765",
+                  "debitCardNo": "4532987654321234",
+                  "email": "keerthi.menon@company.com",
+                  "disease": "migraines",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ011",
+                      "proj_name": "CleanCodeX",
+                      "assigned_date": "2023-07-11"
+                    }
+                  }
+                },
+                {
+                  "emp_id": "1012",
+                  "name": "Liam Martinez",
+                  "age": "20",
+                  "gender": "M",
+                  "zip": "934567",
+                  "ssn": "934-56-7890",
+                  "salary": "99000",
+                  "experience": "15",
+                  "city": "Los Angeles",
+                  "phoneNumber": "9123009876",
+                  "debitCardNo": "3567890123456789",
+                  "email": "liam.martinez@company.com",
+                  "disease": "cholesterol",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ012",
+                      "proj_name": "Predict360",
+                      "assigned_date": "2021-04-22"
+                    }
+                  }
+                },
+                {
+                  "emp_id": "1013",
+                  "name": "Maya Kapoor",
+                  "age": "26",
+                  "gender": "F",
+                  "zip": "945678",
+                  "ssn": "945-67-8901",
+                  "salary": "67000",
+                  "experience": "2",
+                  "city": "Pune",
+                  "phoneNumber": "9876234512",
+                  "debitCardNo": "4916012345678901",
+                  "email": "maya.kapoor@company.com",
+                  "disease": "none",
+                  "projects": {
+                    "project": {
+                      "proj_id": "PRJ013",
+                      "proj_name": "InsightViz",
+                      "assigned_date": "2024-01-17"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "confidential": {
+        "internal_notes": "Top-secret project details."
+      }
+    }
+  }
+  

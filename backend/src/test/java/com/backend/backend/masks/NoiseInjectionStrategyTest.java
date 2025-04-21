@@ -18,12 +18,14 @@ public class NoiseInjectionStrategyTest {
         List<UnifiedHeirarchicalObject> dataSlices = new ArrayList<>();
         dataSlices.add(new UnifiedHeirarchicalObject("key1", "john doe"));
         dataSlices.add(new UnifiedHeirarchicalObject("key3", "Noise Injection Test"));
+        dataSlices.add(new UnifiedHeirarchicalObject("key4", "NIise Injection Test"));
 
         noiseMask.mask(dataSlices);
 
         List<String> expectedValues = List.of(
             "j0hn d03",              // o->0, e->3
-            "N0453 4nj3ct40n T35t"   // o->0, e->3, i->1, s->5, I->1, S->5, E->3
+            "N0453 4nj3ct40n T35t",
+            "N4453 4nj3ct40n T35t"   // o->0, e->3, i->1, s->5, I->1, S->5, E->3
         );
 
         for (int i = 0; i < dataSlices.size(); i++) {

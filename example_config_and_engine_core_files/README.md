@@ -1,6 +1,3 @@
-Collecting workspace informationHere is a README for the example_config_and_engine_core_files folder:
-
-```markdown
 # Example Config and Engine Core Files
 
 This folder contains the data masking strategies, sample data, and the core masking engine scripts. The main XML configuration file used in this project is `config_files/config_schema_v1.xml`.

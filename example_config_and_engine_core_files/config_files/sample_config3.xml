@@ -149,11 +149,13 @@
 
     <full_data>
         <algorithm>KANONYMIZATION</algorithm>
-        <quasi_identifiers>
-                <identifier_xpath>/company/departments/department/employees/employee/gender</identifier_xpath>
-                <identifier_xpath>/company/departments/department/employees/employee/age</identifier_xpath>
-                <identifier_xpath>/company/departments/department/employees/employee/zip</identifier_xpath>
-        </quasi_identifiers>
+        <identifiers>
+            <quasi_identifiers>
+                    <identifier_xpath>/company/departments/department/employees/employee/gender</identifier_xpath>
+                    <identifier_xpath>/company/departments/department/employees/employee/age</identifier_xpath>
+                    <identifier_xpath>/company/departments/department/employees/employee/zip</identifier_xpath>
+            </quasi_identifiers>
+        </identifiers>
         <parameters>
             <k>3</k>
         </parameters>

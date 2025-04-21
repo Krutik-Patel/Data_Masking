@@ -1,0 +1,88 @@
+{
+    "fields_info": {
+      "field": [
+        {
+          "field_name": "experience",
+          "field_xPath": "/company/departments/department/employees/employee/experience",
+          "dataType": "integer",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "BINNING",
+            "method_parameters": {
+              "x": 10
+            }
+          }
+        },
+        {
+          "field_name": "city",
+          "field_xPath": "/company/departments/department/employees/employee/city",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "NOISE_INJECTION",
+            "method_parameters": {}
+          }
+        },
+        {
+          "field_name": "phoneNumber",
+          "field_xPath": "/company/departments/department/employees/employee/phoneNumber",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "PARTIAL_MASKING",
+            "method_parameters": {
+              "x": 5
+            }
+          }
+        },
+        {
+          "field_name": "debitCardNo",
+          "field_xPath": "/company/departments/department/employees/employee/debitCardNo",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "SUBSTITUTION",
+            "method_parameters": {}
+          }
+        },
+        {
+          "field_name": "ssn",
+          "field_xPath": "/company/departments/department/employees/employee/ssn",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "SUBSTITUTION",
+            "method_parameters": {}
+          }
+        },
+        {
+          "field_name": "proj_name",
+          "field_xPath": "/company/departments/department/employees/employee/projects/project/proj_name",
+          "dataType": "string",
+          "isPrimaryKey": true,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "REDACT",
+            "method_parameters": {}
+          }
+        },
+        {
+          "field_name": "email",
+          "field_xPath": "/company/departments/department/employees/employee/email",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "EMAIL",
+            "method_parameters": {}
+          }
+        }
+      ]
+    }
+  }
+  

@@ -1,0 +1,58 @@
+{
+    "company": {
+      "departments": {
+        "department": {
+          "employees": {
+            "employee": [
+              {
+                "experience": 4,
+                "city": "Bangalore",
+                "phoneNumber": "1234567890",
+                "debitCardNo": "1111222233334444",
+                "ssn": "ABC123XYZ",
+                "proj_name": "Apollo",
+                "email": "ravi.kumar@example.com"
+              },
+              {
+                "experience": 7,
+                "city": "Mumbai",
+                "phoneNumber": "0987654321",
+                "debitCardNo": "5555666677778888",
+                "ssn": "XYZ987ABC",
+                "proj_name": "Hermes",
+                "email": "anita.singh@example.com"
+              },
+              {
+                "experience": 3,
+                "city": "Chennai",
+                "phoneNumber": "8765432109",
+                "debitCardNo": "9999888877776666",
+                "ssn": "SSN98371RT",
+                "proj_name": "Zeus",
+                "email": "karan.verma@example.com"
+              },
+              {
+                "experience": 9,
+                "city": "Delhi",
+                "phoneNumber": "1122334455",
+                "debitCardNo": "4444333322221111",
+                "ssn": "SSN56438TY",
+                "proj_name": "Athena",
+                "email": "sneha.patil@example.com"
+              },
+              {
+                "experience": 6,
+                "city": "Hyderabad",
+                "phoneNumber": "6677889900",
+                "debitCardNo": "1234432112344321",
+                "ssn": "SSN34781JK",
+                "proj_name": "Poseidon",
+                "email": "rohit.nair@example.com"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+  

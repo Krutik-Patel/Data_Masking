@@ -1,0 +1,49 @@
+{
+    "company": {
+      "departments": {
+        "department": {
+          "employees": {
+            "employee": [
+              {
+                "gender": "Male",
+                "age": 29,
+                "zip": "560001",
+                "disease": "Diabetes"
+              },
+              {
+                "gender": "Female",
+                "age": 31,
+                "zip": "560001",
+                "disease": "Asthma"
+              },
+              {
+                "gender": "Male",
+                "age": 29,
+                "zip": "560001",
+                "disease": "Hypertension"
+              },
+              {
+                "gender": "Female",
+                "age": 35,
+                "zip": "560002",
+                "disease": "Diabetes"
+              },
+              {
+                "gender": "Male",
+                "age": 35,
+                "zip": "560002",
+                "disease": "Asthma"
+              },
+              {
+                "gender": "Female",
+                "age": 35,
+                "zip": "560002",
+                "disease": "Flu"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+  
