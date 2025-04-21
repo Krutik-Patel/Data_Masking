@@ -2,10 +2,11 @@ package com.backend.backend.engine;
 
 import javax.swing.plaf.multi.MultiPanelUI;
 
+// import org.jcp.xml.dsig.internal.dom.Utils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.backend.backend.morpher.Morpher;
-
+import com.backend.backend.utils.MultiPartFileUtils;
 
 public class Engine {
     private DataFileLoader dataFileLoader;
@@ -24,7 +25,7 @@ public class Engine {
     private Engine() {
         this.morpher = new Morpher();
     }
-    
+
     public String maskData() {
         try {
             this.morpher.executeOperations(this.configLoader, this.dataFileLoader);
@@ -35,19 +36,27 @@ public class Engine {
             return e.toString();
         }
     }
-    
+
+    public String putDataFileFromText(String fileText, String fileName) {
+        return putDataFile(MultiPartFileUtils.convertStringToMultipart(fileText, fileName));
+    }
+
+    public String putConfigFromText(String fileText, String fileName) {
+        return putConfig(MultiPartFileUtils.convertStringToMultipart(fileText, fileName));
+    }
+
     public String putConfig(MultipartFile config) {
         try {
             this.configLoader = new ConfigLoader();
             this.config = config;
             this.configLoader.parse(this.config);
             return this.configLoader.stringifyConfig();
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.err.println(e);
             return e.toString();
         }
     }
-    
+
     public String putDataFile(MultipartFile data) {
         try {
             this.dataFileLoader = new DataFileLoader();
@@ -60,5 +69,7 @@ public class Engine {
         }
     }
 
-    public boolean isReadyForMasking() { return (this.dataFileLoader != null && this.configLoader != null); }
+    public boolean isReadyForMasking() {
+        return (this.dataFileLoader != null && this.configLoader != null);
+    }
 }
