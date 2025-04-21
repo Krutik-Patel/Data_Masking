@@ -19,8 +19,10 @@ public class JSONLoaderTest {
     @Test
     public void testParseFile() throws Exception {
         String jsonContent = "{\"child\": \"value\", \"child1\": { \"innerchild\": \"value1\" } }";
+        String jsonContent2 = "{\"child\": \"value\", \"child1\": [ \"value1\", \"value2\" ]}";
 
         MockMultipartFile file = new MockMultipartFile("file", "test.json", "text/json", jsonContent.getBytes());
+        MockMultipartFile file2 = new MockMultipartFile("file", "test2.json", "text/json", jsonContent2.getBytes());
         JSONLoader loader = new JSONLoader();
 
         UnifiedHeirarchicalObject root = loader.parseFile(file);
@@ -45,6 +47,44 @@ public class JSONLoaderTest {
         UnifiedHeirarchicalObject innerChild = child2Children.get(0);
         assertEquals("innerchild", innerChild.getKey());
         assertEquals("value1", innerChild.getValue());
+
+
+        UnifiedHeirarchicalObject root2 = loader.parseFile(file2);
+
+        // Validate root node
+        assertNotNull(root2);
+        assertEquals("root", root2.getKey());
+        assertNull(root2.getValue());
+
+        // Validate children of root
+        List<UnifiedHeirarchicalObject> children2 = root2.getChildren();
+        assertEquals(2, children2.size());
+
+        // Validate first child
+        UnifiedHeirarchicalObject child12 = children2.get(0);
+        assertEquals("child", child12.getKey());
+        assertEquals("value", child12.getValue());
+        assertTrue(child12.getChildren().isEmpty());
+
+        // Validate second child
+        UnifiedHeirarchicalObject child22 = children2.get(1);
+        assertEquals("child1", child22.getKey());
+        assertNull(child22.getValue());
+
+        // Validate children of the second child (array elements)
+        List<UnifiedHeirarchicalObject> child2Children2 = child22.getChildren();
+        assertEquals(2, child2Children2.size());
+
+        // Validate first element in the array
+        UnifiedHeirarchicalObject innerChild1 = child2Children2.get(0);
+        System.out.println("ATTENTION::: " + innerChild1.getKey() + " " + innerChild1.getValue());
+        assertEquals("child1", innerChild1.getKey());
+        assertEquals("value1", innerChild1.getValue());
+
+        // Validate second element in the array
+        UnifiedHeirarchicalObject innerChild2 = child2Children2.get(1);
+        assertEquals("child1", innerChild2.getKey());
+        assertEquals("value2", innerChild2.getValue());
     }
 
     @Test void testParseFileInvalid() {
@@ -59,3 +99,29 @@ public class JSONLoaderTest {
         assertNotNull(exception);
     }
 }
+
+
+
+// <root>
+//     <child>value</child>
+//     <child1>
+//         <innerchild>value1</innerchild>
+//     </child1>
+// </root>
+
+// <root>
+//     <child>value</child>
+//     <child1>
+            // <child1>
+            //         <innerchild>value1</innerchild>
+            // </child1>
+//     </child1>
+// </root>
+
+// {
+//     "child": "value",
+//     "child1": [
+//       "innerchild": "value1",
+//       "innerchild": "value2"
+//     ]
+//   }
