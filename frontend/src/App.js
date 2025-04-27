@@ -8,6 +8,8 @@ import DataUploader from "./components/DataUploader";
 import { useEffect } from "react";
 
 
+// const BASE_URL = "https://980f-119-161-98-68.ngrok-free.app";
+// const BASE_URL = "https://907f-103-156-19-229.ngrok-free.app/";
 const BASE_URL = "http://localhost:8080";
 
 function Upload() {
@@ -24,8 +26,8 @@ function Upload() {
     useEffect(() => {
         document.body.classList.remove("light-mode", "dark-mode");
         document.body.classList.add(darkMode ? "dark-mode" : "light-mode");
-      }, [darkMode]);
-      
+    }, [darkMode]);
+
     const configUpload = async (file) => {
         if (!file) return;
         setLoading(true);
@@ -34,17 +36,17 @@ function Upload() {
         formData.append("file", file);
 
         try {
-        const response = await axios.post(`${BASE_URL}/uploads/config`, formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-            onUploadProgress: (progressEvent) => {
-            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            setProgress(percent);
-            }
-        });
+            const response = await axios.post(`${BASE_URL}/uploads/config`, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+                onUploadProgress: (progressEvent) => {
+                    const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    setProgress(percent);
+                }
+            });
             setConfigMessage(response.data.message);
             setConfigRules(response.data.additionalText);
             toast.success("Config uploaded successfully");
-        
+
         } catch (error) {
             const errMsg = error.response?.data?.message || "Upload failed";
             toast.error(errMsg);
@@ -63,18 +65,18 @@ function Upload() {
         formData.append("file", file);
 
         try {
-        const response = await axios.post(`${BASE_URL}/uploads/data`, formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-            onUploadProgress: (progressEvent) => {
-            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            setProgress(percent);
-            }
-        });
+            const response = await axios.post(`${BASE_URL}/uploads/data`, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+                onUploadProgress: (progressEvent) => {
+                    const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    setProgress(percent);
+                }
+            });
 
 
-        setDataMessage(response.data.message);
-        setDataText(response.data.additionalText);
-        toast.success("Data uploaded successfully");
+            setDataMessage(response.data.message);
+            setDataText(response.data.additionalText);
+            toast.success("Data uploaded successfully");
         } catch (error) {
             const errMsg = error.response?.data?.message || "Upload failed";
             toast.error(errMsg);
@@ -104,26 +106,26 @@ function Upload() {
 
     return (
         <div className={`upload-container ${darkMode ? "dark-mode" : "light-mode"}`}>
-        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop />
-        <h1>Data Masking App</h1>
-        <button onClick={toggleDarkMode} className="toggle-mode-btn">
-            Switch to {darkMode ? "Light" : "Dark"} Mode
-        </button>
-        {progress > 0 && (
-            <div className="progress-bar">
-            <div className="progress-fill" style={{ width: `${progress}%` }}></div>
-            </div>
-        )}
+            <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop />
+            <h1>Data Masking App</h1>
+            <button onClick={toggleDarkMode} className="toggle-mode-btn">
+                Switch to {darkMode ? "Light" : "Dark"} Mode
+            </button>
+            {progress > 0 && (
+                <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+                </div>
+            )}
 
-        <ConfigUploader
-            onUpload={(file) => configUpload(file)}
-            message={configMessage}
-            rules={configRules}
-            loading={loading}
-            darkMode={darkMode}
-        />
-        <div className="card">
-            <DataUploader
+            <ConfigUploader
+                onUpload={(file) => configUpload(file)}
+                message={configMessage}
+                rules={configRules}
+                loading={loading}
+                darkMode={darkMode}
+            />
+            <div className="card">
+                <DataUploader
                     onUpload={(file) => dataUpload(file)}
                     message={dataMessage}
                     onMask={maskData}
@@ -133,7 +135,7 @@ function Upload() {
                     maskedDataMessage={maskedDataMessage}
                     darkMode={darkMode}
                 />
-        </div>
+            </div>
         </div>
     );
 }
