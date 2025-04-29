@@ -14,6 +14,7 @@ import com.backend.backend.engine.Engine;
 @RestController
 public class ServerController {
     private Engine engineInstance;
+
     public ServerController() {
         this.engineInstance = Engine.getInstance();
     }
@@ -28,11 +29,35 @@ public class ServerController {
 
         String successMessage;
         System.err.println(data);
-        if (data != null) successMessage = "Data Uploaded Successfully";
-        else successMessage = "Data not received!";
+        if (data != null)
+            successMessage = "Data Uploaded Successfully";
+        else
+            successMessage = "Data not received!";
         String dataFileText = this.engineInstance.putDataFile(data);
         Response response = new Response(successMessage, dataFileText);
         return response;
+    }
+
+    @PostMapping("/upload-and-mask")
+    public Response handleUploadAndMask(
+            @RequestParam("config") MultipartFile configFile,
+            @RequestParam("data") MultipartFile dataFile) {
+        String successMessage;
+
+        // Store the files
+        this.engineInstance.putConfig(configFile);
+        this.engineInstance.putDataFile(dataFile);
+
+        // Check and run masking
+        String maskedOutput;
+        if (this.engineInstance.isReadyForMasking()) {
+            maskedOutput = this.engineInstance.maskData();
+            successMessage = "Files uploaded and masking completed!";
+        } else {
+            maskedOutput = "Upload failed or files missing!";
+            successMessage = "Masking failed!";
+        }
+        return new Response(successMessage, maskedOutput);
     }
 
     @PostMapping("/uploads/config")
@@ -54,25 +79,35 @@ public class ServerController {
             maskedOutput = "Upload both data and config file first!!";
         }
         Response returnResponse = new Response(successMessage, maskedOutput);
-        return returnResponse; 
+        return returnResponse;
     }
 }
 
 class Response {
     private String message, additionalText;
-    
+
     public Response(String message) {
         this.message = message;
     }
 
-    public Response(String message, String additionalText) { 
+    public Response(String message, String additionalText) {
         this.message = message;
         this.additionalText = additionalText;
     }
 
-    public String getMessage() { return this.message; }    
-    public String getadditionalText() { return this.additionalText; }
-    public void setMessage(String message) { this.message = message; }
-    public void setadditionalText(String additionalText) { this.additionalText = additionalText; }
-}
+    public String getMessage() {
+        return this.message;
+    }
 
+    public String getadditionalText() {
+        return this.additionalText;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setadditionalText(String additionalText) {
+        this.additionalText = additionalText;
+    }
+}

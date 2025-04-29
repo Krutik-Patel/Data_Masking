@@ -1,0 +1,29 @@
+<fields_info>
+    <field>
+        <field_name>dep_id</field_name>
+        <field_xPath>/company/departments/department/dep_id</field_xPath>
+        <dataType>integer</dataType>
+        <isPrimaryKey>true</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>HASH</method_name>
+            <method_parameters>
+                <algorithm>SHA256</algorithm>
+            </method_parameters>
+        </morphing_method>
+    </field>
+    <field>
+        <field_name>dep_id</field_name>
+        <field_xPath>/company/employees/employee/dep_id</field_xPath>
+        <dataType>integer</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo>
+            <primaryKey_xPath>/company/departments/department/dep_id</primaryKey_xPath>
+        </refersTo>
+        <morphing_method>
+            <method_name>NOTHING</method_name>
+            <method_parameters>
+            </method_parameters>
+        </morphing_method>
+    </field>
+</fields_info>

@@ -1,0 +1,24 @@
+<company>
+    <departments>
+        <department>
+            <dep_id>1</dep_id>
+            <dep_name>robotics</dep_name>
+        </department>
+        <department>
+            <dep_id>2</dep_id>
+            <dep_name>theoratical science</dep_name>
+        </department>
+    </departments>
+    <employees>
+        <employee>
+            <emp_id>413</emp_id>
+            <dep_id>2</dep_id>
+            <salary>10000</salary>
+        </employee>
+        <employee>
+            <emp_id>415</emp_id>
+            <dep_id>1</dep_id>
+            <salary>20000</salary>
+        </employee>
+    </employees>
+</company>

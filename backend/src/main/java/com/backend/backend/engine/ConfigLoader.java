@@ -17,10 +17,16 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 public class ConfigLoader {
     Map<String, MaskingStrategy> maskStrategyMap;
     List<MaskingStrategy> fulldataMasksList;
+
+    // Will store the mapping of primary key to the list of fields which are
+    // foreign key for the current field
+    Map<String, List<String>> foreignKeyMap;
+
     private UnifiedHeirarchicalObject configTree;
 
     public ConfigLoader() {
         this.maskStrategyMap = new HashMap<>();
+        this.foreignKeyMap = new HashMap<>();
         this.fulldataMasksList = new ArrayList<>();
     }
 
@@ -44,14 +50,29 @@ public class ConfigLoader {
 
         String fieldXPath = field.getChildByName("field_xPath").getValue();
         String maskingMethod = field.getChildByName("morphing_method").getChildByName("method_name").getValue();
-        List<UnifiedHeirarchicalObject> mask_params = field.getChildByName("morphing_method").getChildByName("method_parameters").getChildren();
+        List<UnifiedHeirarchicalObject> mask_params = field.getChildByName("morphing_method")
+                .getChildByName("method_parameters").getChildren();
         Map<String, Object> parameters = new HashMap<>();
-        for (UnifiedHeirarchicalObject param: mask_params) {
+        for (UnifiedHeirarchicalObject param : mask_params) {
             parameters.put(param.getKey(), param.getValue());
         }
+
+        // CODE FOR WHEN USING REFERS_TO
+        // check if the there are any fields in refers_to
+        if (field.getChildByName("refersTo").hasChildren()) {
+            List<UnifiedHeirarchicalObject> refersTo = field.getChildByName("refersTo").getChildren();
+            for (UnifiedHeirarchicalObject ref : refersTo) {
+                String refXPath = ref.getValue();
+                if (!this.foreignKeyMap.containsKey(refXPath)) {
+                    this.foreignKeyMap.put(refXPath, new ArrayList<>());
+                }
+                this.foreignKeyMap.get(refXPath).add(fieldXPath);
+            }
+        }
+
         MaskingStrategy mask_instance = MaskingFactory.createMask(maskingMethod, parameters);
         this.maskStrategyMap.put(fieldXPath, mask_instance);
-    } 
+    }
 
     private void mapFullDataConfigMask(UnifiedHeirarchicalObject field) {
         String algorithm = field.getChildByName("algorithm").getValue();
@@ -59,13 +80,13 @@ public class ConfigLoader {
         Map<String, Object> parameters = new HashMap<>();
         identifiers.forEach((identifier) -> {
             List<String> id_xpaths = new ArrayList<>();
-            for (UnifiedHeirarchicalObject child: identifier.getChildren()) {
+            for (UnifiedHeirarchicalObject child : identifier.getChildren()) {
                 id_xpaths.add(child.getValue());
             }
             parameters.put(identifier.getKey(), id_xpaths);
         });
         List<UnifiedHeirarchicalObject> mask_params = field.getChildByName("parameters").getChildren();
-        for (UnifiedHeirarchicalObject param: mask_params) {
+        for (UnifiedHeirarchicalObject param : mask_params) {
             parameters.put(param.getKey(), param.getValue());
         }
         MaskingStrategy mask_instance = MaskingFactory.createMask(algorithm, parameters);
@@ -78,6 +99,10 @@ public class ConfigLoader {
 
     public Map<String, MaskingStrategy> getMaskStrategyMap() {
         return this.maskStrategyMap;
+    }
+
+    public Map<String, List<String>> getForeignKeyMap() {
+        return this.foreignKeyMap;
     }
 
     public String stringifyConfig() throws Exception {
