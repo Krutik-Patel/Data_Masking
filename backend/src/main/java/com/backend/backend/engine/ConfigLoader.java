@@ -105,9 +105,19 @@ public class ConfigLoader {
         return this.foreignKeyMap;
     }
 
-    public String stringifyConfig() throws Exception {
-        String configString = new DataWriter().writeToString(this.configTree, DataFormat.XML);
+    public String stringifyConfig(String extension) throws Exception {
+
+        DataFormat format;
+
+        if ("json".equalsIgnoreCase(extension)) {
+            format = DataFormat.JSON;
+        } else {
+            format = DataFormat.XML;
+        }
+
+        String configString = new DataWriter().writeToString(this.configTree, format);
         return configString;
+
     }
 }
 

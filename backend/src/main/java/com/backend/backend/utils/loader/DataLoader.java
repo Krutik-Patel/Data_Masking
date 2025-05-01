@@ -9,6 +9,7 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 
 public class DataLoader {
     private Map<String, DataLoaderStrategy> loaderMap = new HashMap<>();
+
     public DataLoader() {
         this.loaderMap.put("xml", new XMLLoader());
         this.loaderMap.put("json", new JSONLoader());
@@ -21,6 +22,8 @@ public class DataLoader {
         if (originalFilename != null && originalFilename.lastIndexOf(".") != -1) {
             extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
         }
+
+        System.out.println("The main extension is " + extension);
 
         UnifiedHeirarchicalObject object = null;
         DataLoaderStrategy loader = this.loaderMap.get(extension);

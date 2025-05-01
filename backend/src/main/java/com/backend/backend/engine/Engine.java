@@ -14,6 +14,7 @@ public class Engine {
     private Morpher morpher;
     private static Engine instance;
     private MultipartFile data, config;
+    private String dataFileExtension;
 
     public static Engine getInstance() {
         if (instance == null) {
@@ -28,9 +29,10 @@ public class Engine {
 
     public String maskData() {
         try {
+            System.out.println("The extension is " + this.dataFileExtension);
             this.morpher.executeOperations(this.configLoader, this.dataFileLoader);
             // this.morpher.executeWaterFallOperations(configLoader, dataFileLoader);
-            String outputData = this.dataFileLoader.stringifyData();
+            String outputData = this.dataFileLoader.stringifyData(this.dataFileExtension);
             return outputData;
         } catch (Exception e) {
             System.err.println(e);
@@ -50,9 +52,12 @@ public class Engine {
         try {
             this.configLoader = new ConfigLoader();
             this.config = config;
+            System.out.println("Whyyy herererererere");
             this.configLoader.parse(this.config);
-            return this.configLoader.stringifyConfig();
+            String extension = MultiPartFileUtils.getFileExtension(this.config);
+            return this.configLoader.stringifyConfig(extension);
         } catch (Exception e) {
+            System.out.println("Byeeeeeeeeeeeee");
             System.err.println(e);
             return e.toString();
         }
@@ -63,7 +68,9 @@ public class Engine {
             this.dataFileLoader = new DataFileLoader();
             this.data = data;
             this.dataFileLoader.parse(this.data);
-            return this.dataFileLoader.stringifyData();
+            String extension = MultiPartFileUtils.getFileExtension(this.data);
+            this.dataFileExtension = extension;
+            return this.dataFileLoader.stringifyData(extension);
         } catch (Exception e) {
             System.err.println(e);
             return e.toString();

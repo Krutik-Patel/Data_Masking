@@ -99,7 +99,7 @@ public class ConfigLoaderTest {
         configLoader.parse(mockFile);
 
         // Verify stringifyConfig
-        String configString = configLoader.stringifyConfig();
+        String configString = configLoader.stringifyConfig("xml");
         assertNotNull(configString);
         assertTrue(configString.contains("<field_xPath>/data/field1</field_xPath>"));
         assertTrue(configString.contains("<method_name>REDACT</method_name>"));

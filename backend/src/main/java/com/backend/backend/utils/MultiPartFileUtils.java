@@ -39,4 +39,19 @@ public class MultiPartFileUtils {
         }
         return ""; // Return an empty string if no extension found
     }
+
+    public static String getFileExtension(MultipartFile file) {
+        String originalFilename = file.getOriginalFilename();
+        String extension = "";
+        if (originalFilename != null && originalFilename.lastIndexOf(".") != -1) {
+            extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+        }
+        System.out.println("Original filename: " + originalFilename + " and the extension is " + extension);
+        if ("json".equalsIgnoreCase(extension)) {
+            return "json";
+        } else {
+            return "xml";
+        }
+
+    }
 }

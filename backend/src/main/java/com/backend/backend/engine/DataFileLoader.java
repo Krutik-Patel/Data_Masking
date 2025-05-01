@@ -83,8 +83,15 @@ public class DataFileLoader {
         return result;
     }
 
-    public String stringifyData() throws Exception {
-        String dataString = new DataWriter().writeToString(dataFile, DataFormat.XML);
+    public String stringifyData(String extension) throws Exception {
+
+        DataFormat format;
+        if ("json".equalsIgnoreCase(extension)) {
+            format = DataFormat.JSON;
+        } else {
+            format = DataFormat.XML;
+        }
+        String dataString = new DataWriter().writeToString(dataFile, format);
         return dataString;
     }
 
@@ -92,12 +99,10 @@ public class DataFileLoader {
         return this.xPathToData.get(xpath);
     }
 
-
     public Map<String, List<UnifiedHeirarchicalObject>> getXPathToDataMap() {
         return this.xPathToData;
     }
 
-    
     public Map<String, Map<String, List<UnifiedHeirarchicalObject>>> getXPathValueToDataMap() {
         return this.xPathValueToDataMap;
     }
@@ -106,9 +111,10 @@ public class DataFileLoader {
         return this.xPathValueToDataMap.get(xpath);
     }
 
-    // public void updateValueInXpathValueToDataMao(String xpath, String oldValue, String newValue)
+    // public void updateValueInXpathValueToDataMao(String xpath, String oldValue,
+    // String newValue)
     // {
-    //     this.xPathValueToDataMap.get()
+    // this.xPathValueToDataMap.get()
     // }
 
     public List<UnifiedHeirarchicalObject> getNodesByXpathAndValue(String xpath, String value) {

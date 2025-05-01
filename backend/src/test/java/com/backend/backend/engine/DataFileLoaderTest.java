@@ -20,19 +20,21 @@ public class DataFileLoaderTest {
     public void testParseFunction() throws Exception {
         String xmlContent = "<root><child>value</child><child1><innerchild>value1</innerchild></child1></root>";
         MockMultipartFile file = new MockMultipartFile("test", "test.xml", "text/xml", xmlContent.getBytes());
-        
+
         DataFileLoader dataFileLoader = new DataFileLoader();
         dataFileLoader.parse(file);
 
         // Create an expected map.
         Map<String, List<UnifiedHeirarchicalObject>> expectedMap = new HashMap<>();
 
-        // For the key "/root/child" we expect one node with key "child" and value "value"
+        // For the key "/root/child" we expect one node with key "child" and value
+        // "value"
         List<UnifiedHeirarchicalObject> expectedChildList = new ArrayList<>();
         expectedChildList.add(new UnifiedHeirarchicalObject("child", "value"));
         expectedMap.put("/root/child", expectedChildList);
 
-        // For the key "/root/child1/innerchild" we expect one node with key "innerchild" and value "value1"
+        // For the key "/root/child1/innerchild" we expect one node with key
+        // "innerchild" and value "value1"
         List<UnifiedHeirarchicalObject> expectedInnerChildList = new ArrayList<>();
         expectedInnerChildList.add(new UnifiedHeirarchicalObject("innerchild", "value1"));
         expectedMap.put("/root/child1/innerchild", expectedInnerChildList);
@@ -63,11 +65,11 @@ public class DataFileLoaderTest {
     public void testStringify() throws Exception {
         String xmlContent = "<root><child>value</child><child1>value1</child1></root>";
         MockMultipartFile file = new MockMultipartFile("test", "test.xml", "text/xml", xmlContent.getBytes());
-        
+
         DataFileLoader dataFileLoader = new DataFileLoader();
         dataFileLoader.parse(file);
 
-        String actualString = dataFileLoader.stringifyData();
+        String actualString = dataFileLoader.stringifyData("xml");
         String expectedString = "<root>\n\t<child>value</child>\n\t<child1>value1</child1>\n</root>\n";
 
         assertEquals(actualString, expectedString);
@@ -92,31 +94,32 @@ public class DataFileLoaderTest {
 
         // Prepare a fake xPathToData map with two xpaths, each having two nodes.
         Map<String, List<UnifiedHeirarchicalObject>> fakeMap = new HashMap<>();
-        
+
         // Column 1: /root/child
         List<UnifiedHeirarchicalObject> col1 = new ArrayList<>();
         col1.add(new UnifiedHeirarchicalObject("child", "value1", "/root/child"));
         col1.add(new UnifiedHeirarchicalObject("child", "value2", "/root/child"));
-        
+
         // Column 2: /root/child1
         List<UnifiedHeirarchicalObject> col2 = new ArrayList<>();
         col2.add(new UnifiedHeirarchicalObject("child1", "value3", "/root/child1"));
         col2.add(new UnifiedHeirarchicalObject("child1", "value4", "/root/child1"));
-        
+
         fakeMap.put("/root/child", col1);
         fakeMap.put("/root/child1", col2);
-        
-        // Using reflection to inject the fakeMap into loader's private xPathToData field
+
+        // Using reflection to inject the fakeMap into loader's private xPathToData
+        // field
         Field field = DataFileLoader.class.getDeclaredField("xPathToData");
         field.setAccessible(true);
         field.set(loader, fakeMap);
-        
+
         // Now test the getFullPackagedData method
         List<UnifiedHeirarchicalObject> packagedRows = loader.getFullPackagedData();
         assertNotNull(packagedRows);
         // There should be 2 rows (based on the size of a column)
         assertEquals(2, packagedRows.size(), "There should be 2 packaged rows.");
-        
+
         // For first packaged row, expect the first element from each column
         UnifiedHeirarchicalObject row1 = packagedRows.get(0);
         List<UnifiedHeirarchicalObject> childrenRow1 = row1.getChildren();
@@ -124,7 +127,7 @@ public class DataFileLoaderTest {
         assertEquals(2, childrenRow1.size(), "Row 1 should have 2 children.");
         assertEquals("value3", childrenRow1.get(0).getValue(), "First cell in row 1 should be 'value1'.");
         assertEquals("value1", childrenRow1.get(1).getValue(), "Second cell in row 1 should be 'value3'.");
-        
+
         // For second packaged row, expect the second element from each column
         UnifiedHeirarchicalObject row2 = packagedRows.get(1);
         List<UnifiedHeirarchicalObject> childrenRow2 = row2.getChildren();

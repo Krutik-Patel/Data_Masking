@@ -34,7 +34,7 @@ public class JSONLoader implements DataLoaderStrategy {
                 for (JsonNode child : jsonNode) {
                     UnifiedHeirarchicalObject childNode = convertNode(child, key, newXpath);
                     node.addChild(childNode);
-                } 
+                }
             }
         } else {
             String textValue = jsonNode.asText();
