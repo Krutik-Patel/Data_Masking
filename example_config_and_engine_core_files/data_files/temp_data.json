@@ -1,0 +1,40 @@
+{
+    "company": 
+    {
+        "departments": 
+        {
+            "department" : [
+            {
+                "dept_id": 101,
+                "dept_name": "Engineering",
+                "employees": {
+                    "employee":
+                    [
+                        {
+                            "emp_id": 1002,
+                            "name": "Brian Smith",
+                            "age": 40,
+                            "experience": 12
+                        }
+                    ]
+                }
+            },
+            {
+                "dept_id": 102,
+                "dept_name": "Engineering",
+                "employees": {
+                    "employee":
+                    [
+                        {
+                            "emp_id": 1003,
+                            "name": "Brian Smith",
+                            "age": 40,
+                            "experience": 14
+                        }
+                    ]
+                }
+            }
+            ]
+        }
+    }
+}

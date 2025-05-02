@@ -48,7 +48,6 @@ public class JSONLoaderTest {
         assertEquals("innerchild", innerChild.getKey());
         assertEquals("value1", innerChild.getValue());
 
-
         UnifiedHeirarchicalObject root2 = loader.parseFile(file2);
 
         // Validate root node
@@ -87,7 +86,8 @@ public class JSONLoaderTest {
         assertEquals("value2", innerChild2.getValue());
     }
 
-    @Test void testParseFileInvalid() {
+    @Test
+    void testParseFileInvalid() {
         String invalidJson = "{\"root\": ";
         MockMultipartFile file = new MockMultipartFile("file", "invalid.json", "text/json", invalidJson.getBytes());
 
@@ -100,28 +100,26 @@ public class JSONLoaderTest {
     }
 }
 
-
-
 // <root>
-//     <child>value</child>
-//     <child1>
-//         <innerchild>value1</innerchild>
-//     </child1>
+// <child>value</child>
+// <child1>
+// <innerchild>value1</innerchild>
+// </child1>
 // </root>
 
 // <root>
-//     <child>value</child>
-//     <child1>
-            // <child1>
-            //         <innerchild>value1</innerchild>
-            // </child1>
-//     </child1>
+// <child>value</child>
+// <child1>
+// <child1>
+// <innerchild>value1</innerchild>
+// </child1>
+// </child1>
 // </root>
 
 // {
-//     "child": "value",
-//     "child1": [
-//       "innerchild": "value1",
-//       "innerchild": "value2"
-//     ]
-//   }
+// "child": "value",
+// "child1": [
+// "innerchild": "value1",
+// "innerchild": "value2"
+// ]
+// }

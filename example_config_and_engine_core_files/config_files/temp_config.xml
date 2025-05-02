@@ -1,0 +1,15 @@
+<fields_info>
+    <field>
+        <field_name>experience</field_name>
+        <field_xPath>/company/departments/department/employees/employee/experience</field_xPath>
+        <dataType>integer</dataType>
+        <isPrimaryKey>false</isPrimaryKey>
+        <refersTo></refersTo>
+        <morphing_method>
+            <method_name>BINNING</method_name>
+            <method_parameters>
+                <x>10</x>
+            </method_parameters>
+        </morphing_method>
+    </field>
+</fields_info>

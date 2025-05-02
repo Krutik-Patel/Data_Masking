@@ -1,0 +1,20 @@
+{
+    "fields_info": 
+    {
+        "field": [
+            {
+                "field_name": "experience",
+                "field_xPath": "/company/departments/department/employees/employee/experience",
+                "dataType": "integer",
+                "isPrimaryKey": false,
+                "refersTo": "",
+                "morphing_method": {
+                    "method_name": "BINNING",
+                    "method_parameters": {
+                        "x": 10
+                    }
+                }
+            }
+        ]
+    }
+}
