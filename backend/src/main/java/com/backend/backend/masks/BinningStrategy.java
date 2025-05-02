@@ -26,7 +26,6 @@ public class BinningStrategy implements MaskingStrategy {
         dataSlices.forEach(row -> {
             double n = Double.parseDouble(row.getValue());
             int b = (int) Math.pow(10, x); // Explicit cast to int
-
             double lower = Math.floor(n / b) * b; // Lower bound of bin
             double upper = lower + b; // Upper bound of bin
 
