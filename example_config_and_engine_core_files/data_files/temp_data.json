@@ -2,13 +2,11 @@
     "company": 
     {
         "departments": 
-        {
-            "department" : [
+        [
             {
                 "dept_id": 101,
                 "dept_name": "Engineering",
-                "employees": {
-                    "employee":
+                "employees": 
                     [
                         {
                             "emp_id": 1002,
@@ -63,13 +61,11 @@
 
                         }
                     ]
-                }
             },
             {
                 "dept_id": 102,
                 "dept_name": "Research",
-                "employees": {
-                    "employee":
+                "employees": 
                     [
                         {
                             "emp_id": 1003,
@@ -123,10 +119,8 @@
                             }
 
                         }
-                    ]
-                }
+                    ]                
             }
             ]
-        }
     }
 }

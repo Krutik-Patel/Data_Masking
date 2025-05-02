@@ -4,7 +4,7 @@
         "field": [
             {
                 "field_name": "experience",
-                "field_xPath": "/company/departments/department/employees/employee/experience",
+                "field_xPath": "/company/departments/employees/experience",
                 "dataType": "integer",
                 "isPrimaryKey": false,
                 "refersTo": "",
@@ -17,7 +17,7 @@
             },
             {
                 "field_name": "city",
-                "field_xPath": "/company/departments/department/employees/employee/city",
+                "field_xPath": "/company/departments/employees/city",
                 "dataType": "string",
                 "isPrimaryKey": false,
                 "refersTo": "",
@@ -28,7 +28,7 @@
             },
             {
                 "field_name": "phoneNumber",
-                "field_xPath": "/company/departments/department/employees/employee/phoneNumber",
+                "field_xPath": "/company/departments/employees/phoneNumber",
                 "dataType": "string",
                 "isPrimaryKey": false,
                 "refersTo": "",
