@@ -6,28 +6,118 @@
 								"dept_id": "101",
 								"dept_name": "Engineering",
 								"employees": {
-										"employee": {
-												"emp_id": "1002",
-												"name": "Brian Smith",
-												"age": "40",
-												"experience": "0-2147483647"
+										"employee": [
+											{
+													"emp_id": "1002",
+													"name": "Brian Smith",
+													"age": "40",
+													"gender": "M",
+													"zip": "12345",
+													"ssn": "123-45-6789",
+													"salary": "100000",
+													"experience": "0-2147483647",
+													"city": "ch4c1g0",
+													"phoneNumber": "XXXXX45670",
+													"debitCardNo": "4532789012345678",
+													"email": "brian.smith@company.com",
+													"disease": "diabetes",
+													"projects": {
+															"project": {
+																	"proj_id": "PRJ002",
+																	"proj_name": "Neural NetX",
+																	"assigned_date": "2023-03-10"
 
-										}
+															}
+
+													}
+
+											},
+											{
+													"emp_id": "1005",
+													"name": "Chicku Smith",
+													"age": "30",
+													"gender": "F",
+													"zip": "12355",
+													"ssn": "133-45-6789",
+													"salary": "200000",
+													"experience": "0-2147483647",
+													"city": "d3lh4",
+													"phoneNumber": "XXXXX45635",
+													"debitCardNo": "4532789035345678",
+													"email": "chicku.smith@company.com",
+													"disease": "cancer",
+													"projects": {
+															"project": {
+																	"proj_id": "PRJ002",
+																	"proj_name": "Neural NetX",
+																	"assigned_date": "2023-03-10"
+
+															}
+
+													}
+
+											}
+										]
 
 								}
 
 						},
 						{
 								"dept_id": "102",
-								"dept_name": "Engineering",
+								"dept_name": "Research",
 								"employees": {
-										"employee": {
-												"emp_id": "1003",
-												"name": "Brian Smith",
-												"age": "40",
-												"experience": "0-2147483647"
+										"employee": [
+											{
+													"emp_id": "1003",
+													"name": "Steve Smith",
+													"age": "46",
+													"gender": "M",
+													"zip": "12445",
+													"ssn": "323-45-6789",
+													"salary": "50000",
+													"experience": "0-2147483647",
+													"city": "b0mb1y",
+													"phoneNumber": "XXXXX45670",
+													"debitCardNo": "4532789012345678",
+													"email": "brian.smith@company.com",
+													"disease": "diabetes",
+													"projects": {
+															"project": {
+																	"proj_id": "PRJ002",
+																	"proj_name": "Neural NetX",
+																	"assigned_date": "2023-03-10"
 
-										}
+															}
+
+													}
+
+											},
+											{
+													"emp_id": "1019",
+													"name": "Jeniffer Smith",
+													"age": "30",
+													"gender": "F",
+													"zip": "12355",
+													"ssn": "133-45-6789",
+													"salary": "200000",
+													"experience": "0-2147483647",
+													"city": "d3lh4",
+													"phoneNumber": "XXXXX45635",
+													"debitCardNo": "4532789035345678",
+													"email": "chicku.smith@company.com",
+													"disease": "cancer",
+													"projects": {
+															"project": {
+																	"proj_id": "PRJ002",
+																	"proj_name": "Neural NetX",
+																	"assigned_date": "2023-03-10"
+
+															}
+
+													}
+
+											}
+										]
 
 								}
 
