@@ -12,7 +12,10 @@ public class JSONWriterTest {
         JSONWriter writer = new JSONWriter();
         String json = writer.writeToString(leaf);
 
-        String expected = "\"name\": \"value\"";
+        // String expected = "\"name\": \"value\"";
+        String expected = "{\n" +
+                          "\t\"name\": \"value\"\n" +
+                          "}";
         assertEquals(expected, json);
     }
 
@@ -32,10 +35,16 @@ public class JSONWriterTest {
         JSONWriter writer = new JSONWriter();
         String json = writer.writeToString(root);
 
-        String expected = "\"root\": {\n" +
-                "\t\"child\": \"val1\",\n" +
-                "\t\"child2\": \"val2\"\n" +
-                "}";
+        // String expected = "\"root\": {\n" +
+        //         "\t\"child\": \"val1\",\n" +
+        //         "\t\"child2\": \"val2\"\n" +
+        //         "}";
+        String expected = "{\n" +
+                    "\t\"root\": {\n" +
+                    "\t\t\"child\": \"val1\",\n" +
+                    "\t\t\"child2\": \"val2\"\n" +
+                    "\t}\n" +
+                    "}";
 
         assertEquals(expected, json);
     }
