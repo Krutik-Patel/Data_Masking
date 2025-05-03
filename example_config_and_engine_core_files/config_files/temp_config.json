@@ -11,7 +11,7 @@
                 "morphing_method": {
                     "method_name": "BINNING",
                     "method_parameters": {
-                        "x": 10
+                        "x": 1
                     }
                 }
             },

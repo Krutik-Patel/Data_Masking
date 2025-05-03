@@ -19,9 +19,9 @@ def get_mime_type(file_path):
     elif extension == ".csv":
         return "text/csv"
     else:
-        return "application/octet-stream"  # Default for unknown types
+        return "application/octet-stream"  
 
-def upload_files_to_api(data_file_path, config_file_path, api_url="http://localhost:8080/processData"):
+def upload_files_to_api(data_file_path, config_file_path, api_url="http://localhost:8080/upload-and-mask"):
     """
     Uploads data and config files to the API and retrieves the masked output.
     
@@ -66,8 +66,8 @@ def upload_files_to_api(data_file_path, config_file_path, api_url="http://localh
 
 def main():
     # Specify the paths to your local XML or JSON files
-    data_file_path = "../example_config_and_engine_core_files/data_files/sample_data3.xml"  # Example XML data file
-    config_file_path = "../example_config_and_engine_core_files/config_files/sample_config3.json"  # Example JSON config file
+    data_file_path = "../example_config_and_engine_core_files/data_files/sample_data3.xml"  
+    config_file_path = "../example_config_and_engine_core_files/config_files/sample_config3.json" 
 
     # Call the function to upload files and get the response
     result = upload_files_to_api(data_file_path, config_file_path)
