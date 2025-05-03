@@ -11,6 +11,12 @@ Here, we have considered XML and Json data, where the config files will be provi
 
 We explain the code along with the structure in great details below. 
 
+## References
+1. `Informatica`: https://docs.informatica.com/integration-cloud/data-integration/current-version/transformations/data-masking-transformation/masking-techniques.html
+2. `Masking techniques for structured data`: https://www.percona.com/blog/data-masking-with-percona-server-for-mysql-an-enterprise-feature-at-a-community-price/
+3. `Dynamic Data Masking for SQL`: https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver16
+4. `Types of data masking(IBM)`: https://www.ibm.com/downloads/documents/us-en/10c31775a0d40256
+
 ## Backend Directory Structure
 
 ![Alt Text](images/backend_structure.png)   
