@@ -8,7 +8,7 @@
         <morphing_method>
             <method_name>BINNING</method_name>
             <method_parameters>
-                <x>10</x>
+                <x>1</x>
             </method_parameters>
         </morphing_method>
     </field>

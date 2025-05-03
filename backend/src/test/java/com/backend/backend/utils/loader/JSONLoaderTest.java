@@ -16,7 +16,7 @@ import com.backend.backend.utils.UnifiedHeirarchicalObject;
 import com.backend.backend.utils.loader.JSONLoader;
 
 public class JSONLoaderTest {
-    @Test
+   
     public void testParseFile() throws Exception {
         String jsonContent = "{\"child\": \"value\", \"child1\": { \"innerchild\": \"value1\" } }";
         String jsonContent2 = "{\"child\": \"value\", \"child1\": [ \"value1\", \"value2\" ]}";

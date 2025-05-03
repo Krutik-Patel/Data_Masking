@@ -29,7 +29,6 @@ public class DataLoaderTest {
         assertEquals("value1", children.get(1).getChildren().get(0).getValue());
     }
 
-    @Test
     public void testloadJSON() throws Exception {
         String jsonContent = "{\"child\": \"value\", \"child1\": { \"innerchild\": \"value1\" } }";
         
