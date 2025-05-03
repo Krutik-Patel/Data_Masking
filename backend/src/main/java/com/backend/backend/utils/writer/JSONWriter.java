@@ -28,7 +28,7 @@ public class JSONWriter implements DataWriterStrategy {
 
     @Override
     public String writeToString(UnifiedHeirarchicalObject object) {
-        printTree(object, 0);
+        // printTree(object, 0);
         // return "{\n" + readTree(object, 1) + "\n}";
 
         return "{\n\t\"" + object.getKey() + "\": {\n" + readTree(object, 2) + "\n\t}\n}";

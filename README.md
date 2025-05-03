@@ -167,9 +167,6 @@ We have utilised Java backend(maven), due to simplicity and easier implementatio
    - Used in loaders and writers to define the skeleton of the loading/writing process.
    - Allows subclasses to implement specific steps (e.g., parsing XML vs. JSON).
 
-4. **Builder Pattern**:
-   - Used in the `XMLWriter` and `JSONWriter` to construct the output file incrementally.
-
 ### Example Flow
 
 1. **XMLLoader** reads an XML file and extracts data nodes based on XPath expressions.
