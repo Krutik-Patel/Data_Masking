@@ -69,7 +69,7 @@ public class BackendApplication {
 			String output = engine.maskData();
 			Files.writeString(new File(outputPath).toPath(), output);
 
-			System.out.println("✅ Masked output written to: " + outputPath);
+			System.out.println("Masked output written to: " + outputPath);
 		};
 	}
 }

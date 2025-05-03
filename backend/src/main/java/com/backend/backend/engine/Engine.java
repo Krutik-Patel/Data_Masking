@@ -52,12 +52,10 @@ public class Engine {
         try {
             this.configLoader = new ConfigLoader();
             this.config = config;
-            System.out.println("Whyyy herererererere");
             this.configLoader.parse(this.config);
             String extension = MultiPartFileUtils.getFileExtension(this.config);
             return this.configLoader.stringifyConfig(extension);
         } catch (Exception e) {
-            System.out.println("Byeeeeeeeeeeeee");
             System.err.println(e);
             return e.toString();
         }

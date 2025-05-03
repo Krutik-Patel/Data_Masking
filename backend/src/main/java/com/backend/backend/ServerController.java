@@ -28,7 +28,6 @@ public class ServerController {
     public Response uploadData(@RequestParam("file") MultipartFile data) {
 
         String successMessage;
-        System.err.println(data);
         if (data != null)
             successMessage = "Data Uploaded Successfully";
         else

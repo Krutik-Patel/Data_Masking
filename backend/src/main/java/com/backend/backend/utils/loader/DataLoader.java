@@ -23,7 +23,6 @@ public class DataLoader {
             extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
         }
 
-        System.out.println("The main extension is " + extension);
 
         UnifiedHeirarchicalObject object = null;
         DataLoaderStrategy loader = this.loaderMap.get(extension);

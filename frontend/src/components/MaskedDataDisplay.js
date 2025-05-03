@@ -40,13 +40,13 @@ function MaskedDataDisplay({ data, message, darkMode }) {
     const format = detectFormat(data);
     if (format === "json") {
       return (
-        <SyntaxHighlighter language="json" style={darkMode ? materialDark : materialLight} wrapLongLines>
+        <SyntaxHighlighter language="json" style={darkMode ? materialDark : materialLight} showLineNumbers wrapLongLines>
           {data}
         </SyntaxHighlighter>
       );
     } else if (format === "xml") {
       return (
-        <SyntaxHighlighter language="xml" style={darkMode ? materialDark : materialLight} wrapLongLines>
+        <SyntaxHighlighter language="xml" style={darkMode ? materialDark : materialLight} showLineNumbers wrapLongLines>
           {data}
         </SyntaxHighlighter>
       );

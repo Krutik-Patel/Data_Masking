@@ -27,13 +27,13 @@ function ConfigUploader({ onUpload, message, rules, loading, darkMode }) {
     const format = detectFormat(rules);
     if (format === "json") {
       return (
-        <SyntaxHighlighter language="json" style={darkMode ? materialDark : materialLight} wrapLongLines>
+        <SyntaxHighlighter language="json" style={darkMode ? materialDark : materialLight} showLineNumbers wrapLongLines>
           {rules}
         </SyntaxHighlighter>
       );
     } else if (format === "xml") {
       return (
-        <SyntaxHighlighter language="xml" style={darkMode ? materialDark : materialLight} wrapLongLines>
+        <SyntaxHighlighter language="xml" style={darkMode ? materialDark : materialLight} showLineNumbers wrapLongLines>
           {rules}
         </SyntaxHighlighter>
       );
