@@ -5,6 +5,43 @@ import { materialDark, materialLight } from "react-syntax-highlighter/dist/esm/s
 function ConfigUploader({ onUpload, message, rules, loading, darkMode }) {
   const [file, setFile] = useState(null);
 
+  // Function to determine if the string is JSON or XML
+  const detectFormat = (data) => {
+    try {
+      // Try parsing as JSON
+      JSON.parse(data);
+      return "json";
+    } catch (e) {
+      // If JSON parsing fails, check for XML
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(data, "application/xml");
+      if (xmlDoc.getElementsByTagName("parsererror").length === 0) {
+        return "xml";
+      }
+    }
+    return "unknown";
+  };
+
+  // Render rules based on format
+  const renderRules = () => {
+    const format = detectFormat(rules);
+    if (format === "json") {
+      return (
+        <SyntaxHighlighter language="json" style={darkMode ? materialDark : materialLight} wrapLongLines>
+          {rules}
+        </SyntaxHighlighter>
+      );
+    } else if (format === "xml") {
+      return (
+        <SyntaxHighlighter language="xml" style={darkMode ? materialDark : materialLight} wrapLongLines>
+          {rules}
+        </SyntaxHighlighter>
+      );
+    } else {
+      return <p>Invalid format</p>;
+    }
+  };
+
   return (
     <div className="card">
       <h2>Upload Config File</h2>
@@ -16,10 +53,8 @@ function ConfigUploader({ onUpload, message, rules, loading, darkMode }) {
 
       {rules && (
         <div className="xml-output">
-          <h3>Config Rules (XML)</h3>
-          <SyntaxHighlighter language="xml" style={darkMode ? materialDark : materialLight} wrapLongLines>
-            {rules}
-          </SyntaxHighlighter>
+          <h3>Config Rules</h3>
+          {renderRules()}
         </div>
       )}
     </div>
