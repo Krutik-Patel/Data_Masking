@@ -10,50 +10,47 @@ public class JSONLoader implements DataLoaderStrategy {
     public UnifiedHeirarchicalObject parseFile(MultipartFile file) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode rootNode = mapper.readTree(file.getInputStream());
-
-        // Assuming only one top-level key like { "main": { ... } }
-        if (rootNode.size() != 1) {
-            throw new IllegalArgumentException("Expected exactly one top-level element in JSON");
-        }
-
-        String firstKey = rootNode.fieldNames().next(); // "main"
-        JsonNode mainNode = rootNode.get(firstKey);
-
-        // Pass that node and its actual key to convertNode
-        return convertNode(mainNode, firstKey, "");
+        JsonNode firstChild = rootNode.elements().next();
+        UnifiedHeirarchicalObject object = convertNode(firstChild, rootNode.fieldNames().next(), "");
+        return object;
     }
 
     private UnifiedHeirarchicalObject convertNode(JsonNode jsonNode, String key, String xPath) throws Exception {
         UnifiedHeirarchicalObject node;
-        if (jsonNode.isContainerNode()) {
+        if (jsonNode.isObject()) {
             node = new UnifiedHeirarchicalObject(key, null);
             String newXpath = xPath + "/" + key;
             node.setXpath(newXpath);
-            if (jsonNode.isObject()) {
-                jsonNode.fieldNames().forEachRemaining(field -> {
-                    try {
-                        JsonNode child = jsonNode.get(field);
-                        if (child.isArray()) {
-                            for(JsonNode arrayItem : child) {
-                                UnifiedHeirarchicalObject arrayChildNode = convertNode(arrayItem, field, newXpath);
-                                node.addChild(arrayChildNode);
-                            }
-                        } else {
-                            UnifiedHeirarchicalObject childNode = convertNode(child, field, newXpath);
+            jsonNode.fieldNames().forEachRemaining(field -> {
+                try {
+                    JsonNode child = jsonNode.get(field);
+                    if (child.isArray()) {
+                        for (JsonNode arrayElement : child) {
+                            UnifiedHeirarchicalObject childNode = convertNode(arrayElement, field, newXpath);
                             node.addChild(childNode);
                         }
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                    } else {
+                        UnifiedHeirarchicalObject childNode = convertNode(child, field, newXpath);
+                        node.addChild(childNode);
                     }
-                });
-            } 
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        } else if (jsonNode.isArray()) {
+            node = new UnifiedHeirarchicalObject(key, null);
+            String newXpath = xPath + "/" + key;
+            node.setXpath(newXpath);
+            for (JsonNode arrayElement : jsonNode) {
+                UnifiedHeirarchicalObject childNode = convertNode(arrayElement, key, newXpath);
+                node.addChild(childNode);
+            }
         } else {
             String textValue = jsonNode.asText();
             String newXpath = xPath + "/" + key;
             node = new UnifiedHeirarchicalObject(key, textValue.isEmpty() ? null : textValue);
             node.setXpath(newXpath);
         }
-
         return node;
     }
 }

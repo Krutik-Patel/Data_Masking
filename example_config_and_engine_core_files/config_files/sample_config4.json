@@ -1,145 +1,154 @@
 {
-  "field": [
-    {
-      "field_name": "experience",
-      "field_xPath": "/company/departments/department/employees/employee/experience",
-      "dataType": "integer",
-      "isPrimaryKey": false,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "BINNING",
-        "method_parameters": {
-          "x": 10
+    "fields_info": {
+      "field": [
+        {
+          "field_name": "experience",
+          "field_xPath": "/company/departments/department/employees/employee/experience",
+          "dataType": "integer",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "BINNING",
+            "method_parameters": {
+              "x": 10
+            }
+          }
+        },
+        {
+          "field_name": "city",
+          "field_xPath": "/company/departments/department/employees/employee/city",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "NOISE_INJECTION",
+            "method_parameters": {}
+          }
+        },
+        {
+          "field_name": "phoneNumber",
+          "field_xPath": "/company/departments/department/employees/employee/phoneNumber",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "PARTIAL_MASKING",
+            "method_parameters": {
+              "x": 5
+            }
+          }
+        },
+        {
+          "field_name": "debitCardNo",
+          "field_xPath": "/company/departments/department/employees/employee/debitCardNo",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "SUBSTITUTION",
+            "method_parameters": {}
+          }
+        },
+        {
+          "field_name": "emp_id",
+          "field_xPath": "/company/departments/department/employees/employee/emp_id",
+          "dataType": "integer",
+          "isPrimaryKey": true,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "HASH",
+            "method_parameters": {
+              "algorithm": "SHA256"
+            }
+          }
+        },
+        {
+          "field_name": "ssn",
+          "field_xPath": "/company/departments/department/employees/employee/ssn",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "SUBSTITUTION",
+            "method_parameters": {}
+          }
+        },
+        {
+          "field_name": "name",
+          "field_xPath": "/company/departments/department/employees/employee/name",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "HASH",
+            "method_parameters": {
+              "algorithm": "SHA256"
+            }
+          }
+        },
+        {
+          "field_name": "email",
+          "field_xPath": "/company/departments/department/employees/employee/email",
+          "dataType": "string",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "EMAIL",
+            "method_parameters": {}
+          }
+        },
+        {
+          "field_name": "salary",
+          "field_xPath": "/company/departments/department/employees/employee/salary",
+          "dataType": "integer",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "RANGESHIFT",
+            "method_parameters": {}
+          }
+        },
+        {
+          "field_name": "proj_name",
+          "field_xPath": "/company/departments/department/employees/employee/projects/project/proj_name",
+          "dataType": "string",
+          "isPrimaryKey": true,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "REDACT",
+            "method_parameters": {}
+          }
+        },
+        {
+          "field_name": "assigned_date",
+          "field_xPath": "/company/departments/department/employees/employee/projects/project/assigned_date",
+          "dataType": "date",
+          "isPrimaryKey": false,
+          "refersTo": "",
+          "morphing_method": {
+            "method_name": "HASH",
+            "method_parameters": {
+              "algorithm": "SHA256"
+            }
+          }
         }
-      }
-    },
-    {
-      "field_name": "city",
-      "field_xPath": "/company/departments/department/employees/employee/city",
-      "dataType": "string",
-      "isPrimaryKey": false,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "NOISE_INJECTION",
-        "method_parameters": {}
-      }
-    },
-    {
-      "field_name": "phoneNumber",
-      "field_xPath": "/company/departments/department/employees/employee/phoneNumber",
-      "dataType": "string",
-      "isPrimaryKey": false,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "PARTIAL_MASKING",
-        "method_parameters": {
-          "x": 5
-        }
-      }
-    },
-    {
-      "field_name": "debitCardNo",
-      "field_xPath": "/company/departments/department/employees/employee/debitCardNo",
-      "dataType": "string",
-      "isPrimaryKey": false,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "SUBSTITUTION",
-        "method_parameters": {}
-      }
-    },
-    {
-      "field_name": "emp_id",
-      "field_xPath": "/company/departments/department/employees/employee/emp_id",
-      "dataType": "integer",
-      "isPrimaryKey": true,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "HASH",
-        "method_parameters": {
-          "algorithm": "SHA256"
-        }
-      }
-    },
-    {
-      "field_name": "ssn",
-      "field_xPath": "/company/departments/department/employees/employee/ssn",
-      "dataType": "string",
-      "isPrimaryKey": false,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "SUBSTITUTION",
-        "method_parameters": {}
-      }
-    },
-    {
-      "field_name": "name",
-      "field_xPath": "/company/departments/department/employees/employee/name",
-      "dataType": "string",
-      "isPrimaryKey": false,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "HASH",
-        "method_parameters": {
-          "algorithm": "SHA256"
-        }
-      }
-    },
-    {
-      "field_name": "email",
-      "field_xPath": "/company/departments/department/employees/employee/email",
-      "dataType": "string",
-      "isPrimaryKey": false,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "EMAIL",
-        "method_parameters": {}
-      }
-    },
-    {
-      "field_name": "salary",
-      "field_xPath": "/company/departments/department/employees/employee/salary",
-      "dataType": "integer",
-      "isPrimaryKey": false,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "RANGESHIFT",
-        "method_parameters": {}
-      }
-    },
-    {
-      "field_name": "proj_name",
-      "field_xPath": "/company/departments/department/employees/employee/projects/project/proj_name",
-      "dataType": "string",
-      "isPrimaryKey": true,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "REDACT",
-        "method_parameters": {}
-      }
-    },
-    {
-      "field_name": "assigned_date",
-      "field_xPath": "/company/departments/department/employees/employee/projects/project/assigned_date",
-      "dataType": "date",
-      "isPrimaryKey": false,
-      "refersTo": "",
-      "morphing_method": {
-        "method_name": "HASH",
-        "method_parameters": {
-          "algorithm": "SHA256"
-        }
-      }
-    }
-  ],
-  "full_data": [
+      ],
+      "full_data": [
     {
       "algorithm": "KANONYMIZATION",
-      "quasi_identifiers": [
-        "/company/departments/department/employees/employee/gender",
-        "/company/departments/department/employees/employee/age",
-        "/company/departments/department/employees/employee/zip"
-      ],
+      "identifiers": {
+        "quasi_identifiers": [
+          {
+            "identifier_xpath": "/company/departments/department/employees/employee/gender"
+          },
+          {
+            "identifier_xpath": "/company/departments/department/employees/employee/age"
+          },
+          {
+            "identifier_xpath": "/company/departments/department/employees/employee/zip"
+          }
+        ]
+      },
       "parameters": {
         "k": 3
       }
@@ -148,12 +157,20 @@
       "algorithm": "LDIVERSITY",
       "identifiers": {
         "quasi_identifiers": [
-          "/company/departments/department/employees/employee/gender",
-          "/company/departments/department/employees/employee/age",
-          "/company/departments/department/employees/employee/zip"
+          {
+            "identifier_xpath": "/company/departments/department/employees/employee/gender"
+          },
+          {
+            "identifier_xpath": "/company/departments/department/employees/employee/age"
+          },
+          {
+            "identifier_xpath": "/company/departments/department/employees/employee/zip"
+          }
         ],
         "sensitive_identifiers": [
-          "/company/departments/department/employees/employee/disease"
+          {
+            "identifier_xpath": "/company/departments/department/employees/employee/disease"
+          }
         ]
       },
       "parameters": {
@@ -161,5 +178,6 @@
       }
     }
   ]
-}
+    }
+  }
   

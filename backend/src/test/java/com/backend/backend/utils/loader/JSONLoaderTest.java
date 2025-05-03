@@ -14,6 +14,7 @@ import org.springframework.mock.web.MockMultipartFile;
 
 import com.backend.backend.utils.UnifiedHeirarchicalObject;
 import com.backend.backend.utils.loader.JSONLoader;
+import com.backend.backend.utils.writer.DataWriter;
 
 public class JSONLoaderTest {
     @Test
@@ -57,7 +58,7 @@ public class JSONLoaderTest {
 
         // Validate children of root
         List<UnifiedHeirarchicalObject> children2 = root2.getChildren();
-        assertEquals(2, children2.size());
+        assertEquals(3, children2.size());
 
         // Validate first child
         UnifiedHeirarchicalObject child12 = children2.get(0);
@@ -68,22 +69,63 @@ public class JSONLoaderTest {
         // Validate second child
         UnifiedHeirarchicalObject child22 = children2.get(1);
         assertEquals("child1", child22.getKey());
-        assertNull(child22.getValue());
+        assertEquals("value1", child22.getValue());
+        
+        UnifiedHeirarchicalObject child23 = children2.get(2);
+        assertEquals("child1", child23.getKey());
+        assertEquals("value2", child23.getValue());
+    }
 
-        // Validate children of the second child (array elements)
-        List<UnifiedHeirarchicalObject> child2Children2 = child22.getChildren();
-        assertEquals(2, child2Children2.size());
+    @Test
+    public void testParseFileWithArrayOfObjects() throws Exception {
+        // JSON structure to test
+        String jsonContent = """
+        {
+            "child": "value",
+            "child1": [
+                { "innerchild": "value1" },
+                { "innerchild": "value2" }
+            ]
+        }
+        """;
 
-        // Validate first element in the array
-        UnifiedHeirarchicalObject innerChild1 = child2Children2.get(0);
-        System.out.println("ATTENTION::: " + innerChild1.getKey() + " " + innerChild1.getValue());
-        assertEquals("child1", innerChild1.getKey());
-        assertEquals("value1", innerChild1.getValue());
+        // Mock the file
+        MockMultipartFile file = new MockMultipartFile("file", "test.json", "text/json", jsonContent.getBytes());
 
-        // Validate second element in the array
-        UnifiedHeirarchicalObject innerChild2 = child2Children2.get(1);
-        assertEquals("child1", innerChild2.getKey());
-        assertEquals("value2", innerChild2.getValue());
+        // Create an instance of JSONLoader
+        JSONLoader loader = new JSONLoader();
+
+        // Parse the file
+        UnifiedHeirarchicalObject root = loader.parseFile(file);
+        String outTree = new DataWriter().writeToString(root, DataWriter.DataFormat.JSON);
+        System.out.println("OUT TREE: " + outTree);
+
+        // Validate root node
+        assertNotNull(root);
+        assertEquals("root", root.getKey());
+        assertNull(root.getValue());
+
+        // Validate children of root
+        List<UnifiedHeirarchicalObject> children = root.getChildren();
+        assertEquals(3, children.size());
+
+        // Validate first child
+        UnifiedHeirarchicalObject child1 = children.get(0);
+        assertEquals("child", child1.getKey());
+        assertEquals("value", child1.getValue());
+        assertTrue(child1.getChildren().isEmpty());
+
+        // Validate second child
+        UnifiedHeirarchicalObject child2 = children.get(1);
+        assertEquals("child1", child2.getKey());
+        assertEquals("innerchild", child2.getNthChild(0).getKey());
+        assertEquals("value1", child2.getNthChild(0).getValue());
+
+        UnifiedHeirarchicalObject child3 = children.get(2);
+        assertEquals("child1", child3.getKey());
+        assertEquals("innerchild", child3.getNthChild(0).getKey());
+        assertEquals("value2", child3.getNthChild(0).getValue());
+        assertTrue(child2.getNthChild(0).getChildren().isEmpty());
     }
 
     @Test
